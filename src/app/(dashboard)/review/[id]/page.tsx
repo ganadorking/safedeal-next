@@ -66,7 +66,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -91,7 +91,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
           <p className="text-sm text-[#94A3B8] mb-5">Tu opinion ayuda a otros compradores a tomar mejores decisiones</p>
           <button
             onClick={() => router.push("/purchases")}
-            className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+            className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
           >
             Volver a Compras
           </button>
@@ -151,7 +151,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
                 onChange={(e) => setComment(e.target.value)}
                 rows={4}
                 placeholder="Comparte tu experiencia con este producto..."
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors resize-none"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors resize-none"
               />
             </div>
 
@@ -159,7 +159,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
             <button
               type="submit"
               disabled={submitting || rating === 0}
-              className="w-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-[#E6007E] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-[#4A7CF7] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {submitting ? (
                 <>

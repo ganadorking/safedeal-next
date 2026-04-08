@@ -98,12 +98,12 @@ export default function HowItWorksPage() {
             key={step.number}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-8 flex items-start gap-6"
           >
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold text-lg">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold text-lg">
               {step.number}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-[#E6007E]">{step.icon}</span>
+                <span className="text-[#4A7CF7]">{step.icon}</span>
                 <h2 className="text-xl font-semibold text-[#0F172A]">
                   {step.title}
                 </h2>
@@ -125,7 +125,7 @@ export default function HowItWorksPage() {
             key={feature.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#E6007E] mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
               {feature.icon}
             </div>
             <h3 className="text-[#0F172A] font-semibold mb-2">
@@ -138,7 +138,7 @@ export default function HowItWorksPage() {
         ))}
       </div>
 
-      <div className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] rounded-[14px] p-10 text-center text-white">
+      <div className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] rounded-[14px] p-10 text-center text-white">
         <h2 className="text-2xl font-bold mb-3">
           Empieza a comprar y vender hoy
         </h2>
@@ -148,7 +148,7 @@ export default function HowItWorksPage() {
         </p>
         <a
           href="/search"
-          className="inline-block bg-white text-[#E6007E] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
+          className="inline-block bg-white text-[#4A7CF7] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
         >
           Explorar Productos
         </a>

@@ -98,7 +98,7 @@ export default function ProductActions({ productId, stock }: ProductActionsProps
       <button
         onClick={handleAddToCart}
         disabled={isOutOfStock || addingCart || authLoading}
-        className="w-full h-12 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full h-12 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {addingCart ? (
           <>
@@ -125,8 +125,8 @@ export default function ProductActions({ productId, stock }: ProductActionsProps
         disabled={togglingFav || authLoading}
         className={`w-full h-11 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 border-[1.5px] ${
           isFavorited
-            ? "bg-[#fce4ec] border-[#E6007E]/40 text-[#E6007E]"
-            : "bg-white border-[#E2E8F0] text-[#64748B] hover:border-[#E6007E]/40 hover:text-[#E6007E]"
+            ? "bg-[#fce4ec] border-[#4A7CF7]/40 text-[#4A7CF7]"
+            : "bg-white border-[#E2E8F0] text-[#64748B] hover:border-[#4A7CF7]/40 hover:text-[#4A7CF7]"
         }`}
       >
         <svg

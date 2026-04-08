@@ -27,7 +27,7 @@ const DEFAULT_SLIDES = [
     ctaUrl: "/category/videojuegos",
     imageUrl: null,
     bgColor:
-      "linear-gradient(135deg,#0d1b4b 0%,#1a3a8f 55%,#0075FF 100%)",
+      "linear-gradient(135deg,#0d1b4b 0%,#1a3a8f 55%,#4A7CF7 100%)",
   },
   {
     title: "Gift Cards\ndesde $1 USD",
@@ -93,7 +93,7 @@ const DEFAULT_SIDE = [
     subtitle: "Vende productos digitales y gana dinero sin limites",
     ctaUrl: "/register",
     bgColor:
-      "linear-gradient(135deg,#0a1828 0%,#0d2a4a 50%,#0075FF 100%)",
+      "linear-gradient(135deg,#0a1828 0%,#0d2a4a 50%,#4A7CF7 100%)",
     imageUrl: null,
   },
   {
@@ -212,7 +212,7 @@ async function getHomeData() {
       title: b.title || "",
       subtitle: b.subtitle,
       ctaUrl: b.ctaUrl || "/sell",
-      bgColor: b.bgColor || "linear-gradient(135deg,#0a1828,#0075FF)",
+      bgColor: b.bgColor || "linear-gradient(135deg,#0a1828,#4A7CF7)",
       imageUrl: b.imageUrl,
     }));
 

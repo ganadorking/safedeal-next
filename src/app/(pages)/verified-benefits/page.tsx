@@ -97,7 +97,7 @@ export default function VerifiedBenefitsPage() {
             key={benefit.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-12 h-12 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#E6007E] mb-4">
+            <div className="w-12 h-12 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
               {benefit.icon}
             </div>
             <h3 className="font-semibold text-[#0F172A] mb-2 text-lg">
@@ -124,7 +124,7 @@ export default function VerifiedBenefitsPage() {
                 <th className="text-center px-6 py-3 font-semibold text-[#64748B]">
                   Sin Verificar
                 </th>
-                <th className="text-center px-6 py-3 font-semibold text-[#E6007E]">
+                <th className="text-center px-6 py-3 font-semibold text-[#4A7CF7]">
                   Verificado
                 </th>
               </tr>
@@ -136,7 +136,7 @@ export default function VerifiedBenefitsPage() {
                   <td className="px-6 py-3 text-center text-[#64748B]">
                     {row.unverified}
                   </td>
-                  <td className="px-6 py-3 text-center font-medium text-[#E6007E]">
+                  <td className="px-6 py-3 text-center font-medium text-[#4A7CF7]">
                     {row.verified}
                   </td>
                 </tr>
@@ -146,7 +146,7 @@ export default function VerifiedBenefitsPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] rounded-[14px] p-10 text-center text-white">
+      <div className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] rounded-[14px] p-10 text-center text-white">
         <h2 className="text-2xl font-bold mb-3">
           Verifica tu Cuenta Ahora
         </h2>
@@ -156,7 +156,7 @@ export default function VerifiedBenefitsPage() {
         </p>
         <a
           href="/kyc"
-          className="inline-block bg-white text-[#E6007E] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
+          className="inline-block bg-white text-[#4A7CF7] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
         >
           Iniciar Verificación KYC
         </a>

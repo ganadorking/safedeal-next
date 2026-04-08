@@ -81,7 +81,7 @@ export default async function SellerPage({
   return (
     <div className="min-h-screen bg-[#FFFFFF]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#E6007E] via-[#E6007E] to-[#C5006B] pt-12 pb-16">
+      <div className="bg-gradient-to-r from-[#4A7CF7] via-[#4A7CF7] to-[#3A65D4] pt-12 pb-16">
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex items-center gap-2 text-sm text-white/70 mb-6">
             <Link href="/" className="hover:text-white">

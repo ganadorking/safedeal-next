@@ -185,7 +185,7 @@ function CardPaymentForm({
           Datos de la tarjeta
         </label>
         <div
-          className="p-4 bg-[#F8FAFC] rounded-[10px] border-[1.5px] border-[#E2E8F0] transition-all focus-within:border-[#E6007E] focus-within:ring-2 focus-within:ring-[#E6007E]/10"
+          className="p-4 bg-[#F8FAFC] rounded-[10px] border-[1.5px] border-[#E2E8F0] transition-all focus-within:border-[#4A7CF7] focus-within:ring-2 focus-within:ring-[#4A7CF7]/10"
         >
           <CardElement
             options={CARD_ELEMENT_OPTIONS}
@@ -201,7 +201,7 @@ function CardPaymentForm({
       <button
         type="submit"
         disabled={processing || !stripe || !cardComplete}
-        className="w-full h-[52px] bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold text-base hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full h-[52px] bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold text-base hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {processing ? (
           <>
@@ -325,7 +325,7 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Spinner className="h-8 w-8 text-[#E6007E]" />
+          <Spinner className="h-8 w-8 text-[#4A7CF7]" />
           <p className="text-[#94A3B8] text-sm">Cargando...</p>
         </div>
       </div>
@@ -346,7 +346,7 @@ export default function CheckoutPage() {
           <p className="text-sm text-[#94A3B8] mb-6">Agrega productos para continuar con la compra.</p>
           <Link
             href="/search"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+            className="inline-block px-6 py-3 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
           >
             Explorar productos
           </Link>
@@ -361,7 +361,7 @@ export default function CheckoutPage() {
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <Link href="/search" className="text-[#94A3B8] hover:text-[#E6007E] transition-colors">
+          <Link href="/search" className="text-[#94A3B8] hover:text-[#4A7CF7] transition-colors">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -383,7 +383,7 @@ export default function CheckoutPage() {
                 }}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   step === num
-                    ? "bg-[#fce4ec] text-[#E6007E]"
+                    ? "bg-[#fce4ec] text-[#4A7CF7]"
                     : step > num
                     ? "bg-green-50 text-green-600 cursor-pointer"
                     : "bg-[#F8FAFC] text-[#94A3B8]"
@@ -392,7 +392,7 @@ export default function CheckoutPage() {
                 <span
                   className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                     step === num
-                      ? "bg-[#E6007E] text-white"
+                      ? "bg-[#4A7CF7] text-white"
                       : step > num
                       ? "bg-green-500 text-white"
                       : "bg-[#E2E8F0] text-[#94A3B8]"
@@ -428,7 +428,7 @@ export default function CheckoutPage() {
                   {step > 1 && (
                     <button
                       onClick={() => setStep(1)}
-                      className="text-xs text-[#E6007E] hover:text-[#E6007E] font-medium"
+                      className="text-xs text-[#4A7CF7] hover:text-[#4A7CF7] font-medium"
                     >
                       Editar
                     </button>
@@ -450,7 +450,7 @@ export default function CheckoutPage() {
                           <div className="flex-1 min-w-0">
                             <Link
                               href={`/product/${item.product.slug}`}
-                              className="text-sm font-semibold text-[#0F172A] hover:text-[#E6007E] transition-colors line-clamp-1"
+                              className="text-sm font-semibold text-[#0F172A] hover:text-[#4A7CF7] transition-colors line-clamp-1"
                             >
                               {item.product.title}
                             </Link>
@@ -460,7 +460,7 @@ export default function CheckoutPage() {
                             <p className="text-xs text-[#94A3B8]">Cantidad: {item.quantity}</p>
                           </div>
                           <div className="flex flex-col items-end justify-between">
-                            <p className="text-sm font-bold text-[#E6007E]">
+                            <p className="text-sm font-bold text-[#4A7CF7]">
                               ${(Number(item.product.price) * item.quantity).toFixed(2)}
                             </p>
                             <button
@@ -476,7 +476,7 @@ export default function CheckoutPage() {
                     </div>
                     <button
                       onClick={() => setStep(2)}
-                      className="mt-6 w-full h-12 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all flex items-center justify-center gap-2"
+                      className="mt-6 w-full h-12 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all flex items-center justify-center gap-2"
                     >
                       Continuar al pago
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -489,7 +489,7 @@ export default function CheckoutPage() {
                   <div className="flex items-center gap-3 text-sm text-[#64748B]">
                     <span>{cartItems.length} producto{cartItems.length > 1 ? "s" : ""}</span>
                     <span className="text-[#E2E8F0]">|</span>
-                    <span className="font-semibold text-[#E6007E]">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold text-[#4A7CF7]">${subtotal.toFixed(2)}</span>
                   </div>
                 )}
               </div>
@@ -503,7 +503,7 @@ export default function CheckoutPage() {
                   {step > 2 && (
                     <button
                       onClick={() => setStep(2)}
-                      className="text-xs text-[#E6007E] hover:text-[#E6007E] font-medium"
+                      className="text-xs text-[#4A7CF7] hover:text-[#4A7CF7] font-medium"
                     >
                       Cambiar
                     </button>
@@ -519,11 +519,11 @@ export default function CheckoutPage() {
                           onClick={() => setPaymentMethod(method.id)}
                           className={`w-full flex items-center gap-4 p-4 rounded-[10px] border-[1.5px] transition-all text-left ${
                             paymentMethod === method.id
-                              ? "border-[#E6007E] bg-[#fce4ec]/50 ring-2 ring-[#E6007E]/10"
-                              : "border-[#E2E8F0] hover:border-[#E6007E]"
+                              ? "border-[#4A7CF7] bg-[#fce4ec]/50 ring-2 ring-[#4A7CF7]/10"
+                              : "border-[#E2E8F0] hover:border-[#4A7CF7]"
                           }`}
                         >
-                          <div className={paymentMethod === method.id ? "text-[#E6007E]" : "text-[#94A3B8]"}>
+                          <div className={paymentMethod === method.id ? "text-[#4A7CF7]" : "text-[#94A3B8]"}>
                             {method.icon}
                           </div>
                           <div className="flex-1">
@@ -532,11 +532,11 @@ export default function CheckoutPage() {
                           </div>
                           <div
                             className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                              paymentMethod === method.id ? "border-[#E6007E]" : "border-[#E2E8F0]"
+                              paymentMethod === method.id ? "border-[#4A7CF7]" : "border-[#E2E8F0]"
                             }`}
                           >
                             {paymentMethod === method.id && (
-                              <div className="w-2.5 h-2.5 rounded-full bg-[#E6007E]" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-[#4A7CF7]" />
                             )}
                           </div>
                         </button>
@@ -544,7 +544,7 @@ export default function CheckoutPage() {
                     </div>
                     <button
                       onClick={() => setStep(3)}
-                      className="mt-6 w-full h-12 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all flex items-center justify-center gap-2"
+                      className="mt-6 w-full h-12 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all flex items-center justify-center gap-2"
                     >
                       Continuar
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -606,7 +606,7 @@ export default function CheckoutPage() {
                         </p>
                         <Link
                           href="/wallet"
-                          className="inline-block px-6 py-3 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+                          className="inline-block px-6 py-3 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
                         >
                           Recargar saldo
                         </Link>
@@ -616,7 +616,7 @@ export default function CheckoutPage() {
                         <button
                           onClick={handleWalletPayment}
                           disabled={processing}
-                          className="w-full h-[52px] bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold text-base hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                          className="w-full h-[52px] bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold text-base hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
                           {processing ? (
                             <>
@@ -660,7 +660,7 @@ export default function CheckoutPage() {
                         setPaymentMethod("card");
                         setStep(2);
                       }}
-                      className="mt-6 px-6 py-3 border-[1.5px] border-[#E6007E] text-[#E6007E] rounded-xl font-semibold hover:bg-[#fce4ec] transition-all"
+                      className="mt-6 px-6 py-3 border-[1.5px] border-[#4A7CF7] text-[#4A7CF7] rounded-xl font-semibold hover:bg-[#fce4ec] transition-all"
                     >
                       Elegir otro metodo
                     </button>
@@ -702,7 +702,7 @@ export default function CheckoutPage() {
                 <div className="border-t border-[#E2E8F0] pt-3">
                   <div className="flex justify-between">
                     <span className="text-base font-bold text-[#0F172A]">Total</span>
-                    <span className="text-xl font-bold text-[#E6007E]">${total.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-[#4A7CF7]">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -723,7 +723,7 @@ export default function CheckoutPage() {
                   <span>Proteccion al comprador SafeDeal</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-[#94A3B8]">
-                  <svg className="w-4 h-4 text-[#E6007E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#4A7CF7] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                   <span>Encriptacion SSL de extremo a extremo</span>

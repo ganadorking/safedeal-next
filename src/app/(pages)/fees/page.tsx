@@ -15,7 +15,7 @@ const highlights = [
     value: "5%",
     label: "Comisión Vendedor",
     description: "Solo pagas cuando vendes. Sin costos ocultos ni cuotas mensuales.",
-    color: "from-[#E6007E] to-[#C5006B]",
+    color: "from-[#4A7CF7] to-[#3A65D4]",
   },
   {
     value: "$0",
@@ -100,7 +100,7 @@ export default function FeesPage() {
               {feeBreakdown.map((fee) => (
                 <tr key={fee.concept}>
                   <td className="px-6 py-3 text-[#0F172A]">{fee.concept}</td>
-                  <td className="px-6 py-3 font-semibold text-[#E6007E]">
+                  <td className="px-6 py-3 font-semibold text-[#4A7CF7]">
                     {fee.rate}
                   </td>
                   <td className="px-6 py-3 text-[#64748B]">{fee.notes}</td>
@@ -140,7 +140,7 @@ export default function FeesPage() {
               {paymentMethods.map((pm) => (
                 <tr key={pm.method}>
                   <td className="px-6 py-3 text-[#0F172A]">{pm.method}</td>
-                  <td className="px-6 py-3 font-semibold text-[#E6007E]">
+                  <td className="px-6 py-3 font-semibold text-[#4A7CF7]">
                     {pm.fee}
                   </td>
                   <td className="px-6 py-3 text-[#64748B]">{pm.processor}</td>

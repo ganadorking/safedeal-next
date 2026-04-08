@@ -67,13 +67,13 @@ export default function PayoutSettingsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   const inputClass =
-    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors";
+    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors";
   const labelClass = "block text-sm font-medium text-[#64748B] mb-1.5";
 
   const tabs: { key: Tab; label: string; icon: string }[] = [
@@ -113,7 +113,7 @@ export default function PayoutSettingsPage() {
               onClick={() => setActiveTab(tab.key)}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-medium transition-colors ${
                 activeTab === tab.key
-                  ? "text-[#E6007E] border-b-2 border-[#E6007E] bg-[#fce4ec]/50"
+                  ? "text-[#4A7CF7] border-b-2 border-[#4A7CF7] bg-[#fce4ec]/50"
                   : "text-[#94A3B8] hover:text-[#64748B] hover:bg-[#F8FAFC]"
               }`}
             >
@@ -212,7 +212,7 @@ export default function PayoutSettingsPage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 flex items-center gap-2"
+              className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 flex items-center gap-2"
             >
               {saving ? (
                 <>

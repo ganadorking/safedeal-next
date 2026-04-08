@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#1C1C1D",
+        background: "#0A0A0A",
         borderTop: "1px solid rgba(255,255,255,0.08)",
         fontFamily: "var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         WebkitFontSmoothing: "antialiased",
@@ -41,7 +41,7 @@ export default function Footer() {
             >
               <i
                 className={item.icon}
-                style={{ fontSize: 14, color: "#0075FF" }}
+                style={{ fontSize: 14, color: "#4A7CF7" }}
               />
               <span>
                 <strong style={{ color: "#fff", fontWeight: 600 }}>
@@ -79,7 +79,7 @@ export default function Footer() {
               }}
             >
               Safe
-              <span style={{ color: "#E6007E" }}>Deal</span>
+              <span style={{ color: "#4A7CF7" }}>Deal</span>
             </Link>
             <p
               style={{
@@ -112,7 +112,7 @@ export default function Footer() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    background: "#282829",
+                    background: "#1A1A1A",
                     border: "1px solid rgba(255,255,255,0.08)",
                     borderRadius: 8,
                     color: "#9AA0B0",
@@ -144,7 +144,7 @@ export default function Footer() {
               {[
                 { href: "/search?sort=popular", label: "Mas vendidos" },
                 { href: "/search?sort=new", label: "Novedades", badge: "NEW", badgeStyle: { background: "rgba(255,255,255,0.1)", color: "#fff" } },
-                { href: "/search?sort=discount", label: "Ofertas", badge: "HOT", badgeStyle: { background: "#E6007E", color: "#fff" } },
+                { href: "/search?sort=discount", label: "Ofertas", badge: "HOT", badgeStyle: { background: "#4A7CF7", color: "#fff" } },
                 { href: "/category/videojuegos", label: "Videojuegos" },
                 { href: "/category/gift-cards", label: "Gift Cards" },
                 { href: "/category/software", label: "Software" },
@@ -209,13 +209,13 @@ export default function Footer() {
                   prefix: (
                     <i
                       className="fas fa-crown"
-                      style={{ fontSize: 9, color: "#E6007E" }}
+                      style={{ fontSize: 9, color: "#4A7CF7" }}
                     />
                   ),
                   badge: "PRO",
                   badgeStyle: {
                     background: "rgba(230,0,126,0.15)",
-                    color: "#E6007E",
+                    color: "#4A7CF7",
                     border: "1px solid rgba(230,0,126,0.2)",
                   },
                 },
@@ -371,7 +371,7 @@ export default function Footer() {
                     display: "flex",
                     alignItems: "center",
                     gap: 5,
-                    background: "#282829",
+                    background: "#1A1A1A",
                     border: "1px solid rgba(255,255,255,0.07)",
                     borderRadius: 6,
                     padding: "5px 10px",

@@ -52,7 +52,7 @@ export default function ContactForm() {
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
             placeholder="Tu nombre completo"
           />
         </div>
@@ -65,7 +65,7 @@ export default function ContactForm() {
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
             placeholder="tu@correo.com"
           />
         </div>
@@ -79,7 +79,7 @@ export default function ContactForm() {
             onChange={(e) =>
               setFormData({ ...formData, subject: e.target.value })
             }
-            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+            className="w-full h-11 px-4 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
           >
             <option value="">Selecciona un asunto</option>
             <option value="compras">Problema con una compra</option>
@@ -101,13 +101,13 @@ export default function ContactForm() {
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            className="w-full px-4 py-3 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors resize-none"
+            className="w-full px-4 py-3 bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors resize-none"
             placeholder="Describe tu consulta con el mayor detalle posible..."
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity"
+          className="w-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity"
         >
           Enviar Mensaje
         </button>

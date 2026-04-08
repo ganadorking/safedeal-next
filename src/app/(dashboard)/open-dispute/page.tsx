@@ -68,13 +68,13 @@ export default function OpenDisputePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   const inputClass =
-    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors";
+    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors";
   const labelClass = "block text-sm font-medium text-[#64748B] mb-1.5";
 
   return (
@@ -159,7 +159,7 @@ export default function OpenDisputePage() {
                 required
                 rows={5}
                 placeholder="Explica con detalle lo que ocurrio. Incluye fechas, capturas si es posible, y cualquier informacion relevante."
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors resize-none"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors resize-none"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function OpenDisputePage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#E6007E] transition-all text-sm disabled:opacity-50 flex items-center gap-2"
+                className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#4A7CF7] transition-all text-sm disabled:opacity-50 flex items-center gap-2"
               >
                 {submitting ? (
                   <>

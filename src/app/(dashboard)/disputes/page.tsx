@@ -42,7 +42,7 @@ export default async function DisputesPage() {
         <h1 className="text-2xl font-bold text-[#0F172A]">Disputas</h1>
         <Link
           href="/open-dispute"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
         >
           <i className="fa-solid fa-plus" /> Abrir Disputa
         </Link>
@@ -83,7 +83,7 @@ export default async function DisputesPage() {
 
                 <div className="ml-[52px]">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#C5006B]">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#3A65D4]">
                       <i className="fa-solid fa-tag text-[10px]" /> {dispute.reason}
                     </span>
                   </div>

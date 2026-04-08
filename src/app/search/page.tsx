@@ -16,10 +16,10 @@ export async function generateMetadata({
 }
 
 const SORT_OPTIONS = [
-  { value: "popular", label: "Mas vendidos" },
   { value: "newest", label: "Mas recientes" },
-  { value: "price_asc", label: "Precio: menor" },
-  { value: "price_desc", label: "Precio: mayor" },
+  { value: "price_asc", label: "Precio: menor a mayor" },
+  { value: "price_desc", label: "Precio: mayor a menor" },
+  { value: "popular", label: "Mas vendidos" },
   { value: "rating", label: "Mejor calificados" },
 ];
 
@@ -33,18 +33,18 @@ export default async function SearchPage({
     sort?: string;
     page?: string;
     category?: string;
-    price_min?: string;
-    price_max?: string;
+    minPrice?: string;
+    maxPrice?: string;
     delivery?: string;
   }>;
 }) {
   const sp = await searchParams;
   const query = sp.q?.trim() || "";
-  const sort = sp.sort || "popular";
+  const sort = sp.sort || "newest";
   const currentPage = Math.max(1, parseInt(sp.page || "1"));
   const categorySlug = sp.category || "";
-  const priceMin = sp.price_min ? parseFloat(sp.price_min) : undefined;
-  const priceMax = sp.price_max ? parseFloat(sp.price_max) : undefined;
+  const priceMin = sp.minPrice ? parseFloat(sp.minPrice) : undefined;
+  const priceMax = sp.maxPrice ? parseFloat(sp.maxPrice) : undefined;
   const delivery = sp.delivery || "";
 
   const where: Prisma.ProductWhereInput = {
@@ -56,7 +56,9 @@ export default async function SearchPage({
     const words = query.split(/\s+/).filter(Boolean);
     where.OR = [
       { title: { contains: query, mode: "insensitive" } },
+      { description: { contains: query, mode: "insensitive" } },
       ...words.map((w) => ({ title: { contains: w, mode: "insensitive" as const } })),
+      ...words.map((w) => ({ description: { contains: w, mode: "insensitive" as const } })),
       ...words.map((w) => ({ tags: { contains: w, mode: "insensitive" as const } })),
       { shortDescription: { contains: query, mode: "insensitive" } },
     ];
@@ -70,6 +72,7 @@ export default async function SearchPage({
   if (priceMin !== undefined) where.price = { ...(where.price as object || {}), gte: priceMin };
   if (priceMax !== undefined) where.price = { ...(where.price as object || {}), lte: priceMax };
   if (delivery === "instant") where.deliveryType = "instant";
+  if (delivery === "manual") where.deliveryType = "manual";
 
   let orderBy: Prisma.ProductOrderByWithRelationInput;
   switch (sort) {
@@ -77,7 +80,8 @@ export default async function SearchPage({
     case "price_desc": orderBy = { price: "desc" }; break;
     case "newest": orderBy = { createdAt: "desc" }; break;
     case "rating": orderBy = { rating: "desc" }; break;
-    default: orderBy = { salesCount: "desc" };
+    case "popular": orderBy = { salesCount: "desc" }; break;
+    default: orderBy = { createdAt: "desc" };
   }
 
   const [products, total, categories] = await Promise.all([
@@ -100,14 +104,16 @@ export default async function SearchPage({
   ]);
 
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+  const showingFrom = total === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
+  const showingTo = Math.min(currentPage * ITEMS_PER_PAGE, total);
 
   function buildUrl(params: Record<string, string>) {
     const p = new URLSearchParams();
     if (query) p.set("q", query);
     if (categorySlug && !("category" in params)) p.set("category", categorySlug);
-    if (sort !== "popular" && !("sort" in params)) p.set("sort", sort);
-    if (sp.price_min && !("price_min" in params)) p.set("price_min", sp.price_min);
-    if (sp.price_max && !("price_max" in params)) p.set("price_max", sp.price_max);
+    if (sort !== "newest" && !("sort" in params)) p.set("sort", sort);
+    if (sp.minPrice && !("minPrice" in params)) p.set("minPrice", sp.minPrice);
+    if (sp.maxPrice && !("maxPrice" in params)) p.set("maxPrice", sp.maxPrice);
     if (delivery && !("delivery" in params)) p.set("delivery", delivery);
     Object.entries(params).forEach(([k, v]) => { if (v) p.set(k, v); else p.delete(k); });
     p.delete("page");
@@ -126,7 +132,7 @@ export default async function SearchPage({
           </nav>
           <h1 style={{ fontSize: 22, fontWeight: 800, color: "#0F172A" }}>
             {query ? (
-              <>Resultados para <span style={{ color: "#E6007E" }}>&ldquo;{query}&rdquo;</span></>
+              <>Resultados para <span style={{ color: "#4A7CF7" }}>&ldquo;{query}&rdquo;</span></>
             ) : (
               "Explorar productos"
             )}
@@ -146,7 +152,7 @@ export default async function SearchPage({
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Link href={buildUrl({ category: "" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8,
-                color: !categorySlug ? "#E6007E" : "#64748B",
+                color: !categorySlug ? "#4A7CF7" : "#64748B",
                 fontWeight: !categorySlug ? 600 : 400,
                 background: !categorySlug ? "rgba(230,0,126,0.06)" : "transparent",
               }}>
@@ -155,7 +161,7 @@ export default async function SearchPage({
               {categories.map((cat) => (
                 <Link key={cat.slug} href={buildUrl({ category: cat.slug })} style={{
                   padding: "7px 10px", fontSize: 13, borderRadius: 8,
-                  color: categorySlug === cat.slug ? "#E6007E" : "#64748B",
+                  color: categorySlug === cat.slug ? "#4A7CF7" : "#64748B",
                   fontWeight: categorySlug === cat.slug ? 600 : 400,
                   background: categorySlug === cat.slug ? "rgba(230,0,126,0.06)" : "transparent",
                   display: "flex", justifyContent: "space-between",
@@ -173,16 +179,17 @@ export default async function SearchPage({
             <form method="GET" action="/search" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {query && <input type="hidden" name="q" value={query} />}
               {categorySlug && <input type="hidden" name="category" value={categorySlug} />}
-              {sort !== "popular" && <input type="hidden" name="sort" value={sort} />}
+              {sort !== "newest" && <input type="hidden" name="sort" value={sort} />}
+              {delivery && <input type="hidden" name="delivery" value={delivery} />}
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                <input name="price_min" type="number" placeholder="Min" defaultValue={sp.price_min || ""}
+                <input name="minPrice" type="number" placeholder="Min" defaultValue={sp.minPrice || ""}
                   style={{ width: "100%", height: 36, padding: "0 10px", border: "1.5px solid #E2E8F0", borderRadius: 8, fontSize: 13, outline: "none", background: "#F8FAFC" }} />
-                <span style={{ color: "#94A3B8" }}>—</span>
-                <input name="price_max" type="number" placeholder="Max" defaultValue={sp.price_max || ""}
+                <span style={{ color: "#94A3B8" }}>&mdash;</span>
+                <input name="maxPrice" type="number" placeholder="Max" defaultValue={sp.maxPrice || ""}
                   style={{ width: "100%", height: 36, padding: "0 10px", border: "1.5px solid #E2E8F0", borderRadius: 8, fontSize: 13, outline: "none", background: "#F8FAFC" }} />
               </div>
-              <button type="submit" style={{ height: 34, background: "#E6007E", color: "#fff", border: "none", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "opacity 0.2s" }}>
-                Aplicar precio
+              <button type="submit" style={{ height: 34, background: "#4A7CF7", color: "#fff", border: "none", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+                Aplicar
               </button>
             </form>
           </div>
@@ -193,15 +200,22 @@ export default async function SearchPage({
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <Link href={buildUrl({ delivery: "" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8,
-                color: !delivery ? "#E6007E" : "#64748B", fontWeight: !delivery ? 600 : 400,
+                color: !delivery ? "#4A7CF7" : "#64748B", fontWeight: !delivery ? 600 : 400,
                 background: !delivery ? "rgba(230,0,126,0.06)" : "transparent",
-              }}>Todas</Link>
+              }}>Todos</Link>
               <Link href={buildUrl({ delivery: "instant" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8, display: "flex", alignItems: "center", gap: 6,
-                color: delivery === "instant" ? "#E6007E" : "#64748B", fontWeight: delivery === "instant" ? 600 : 400,
+                color: delivery === "instant" ? "#4A7CF7" : "#64748B", fontWeight: delivery === "instant" ? 600 : 400,
                 background: delivery === "instant" ? "rgba(230,0,126,0.06)" : "transparent",
               }}>
                 <i className="fas fa-bolt" style={{ fontSize: 11 }} /> Instantanea
+              </Link>
+              <Link href={buildUrl({ delivery: "manual" })} style={{
+                padding: "7px 10px", fontSize: 13, borderRadius: 8, display: "flex", alignItems: "center", gap: 6,
+                color: delivery === "manual" ? "#4A7CF7" : "#64748B", fontWeight: delivery === "manual" ? 600 : 400,
+                background: delivery === "manual" ? "rgba(230,0,126,0.06)" : "transparent",
+              }}>
+                <i className="fas fa-hand-paper" style={{ fontSize: 11 }} /> Manual
               </Link>
             </div>
           </div>
@@ -209,33 +223,37 @@ export default async function SearchPage({
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          {/* Sort controls */}
+          {/* Sort controls + result count */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-              {SORT_OPTIONS.map((opt) => (
-                <Link key={opt.value} href={buildUrl({ sort: opt.value === "popular" ? "" : opt.value })} style={{
-                  padding: "8px 16px", borderRadius: 9, fontSize: 13, fontWeight: 600,
-                  background: sort === opt.value ? "#E6007E" : "#F1F5F9",
-                  color: sort === opt.value ? "#fff" : "#64748B",
-                  transition: "background 0.2s, color 0.2s",
-                }}>
-                  {opt.label}
-                </Link>
-              ))}
-            </div>
+            <p style={{ fontSize: 13, color: "#94A3B8", margin: 0 }}>
+              Mostrando {showingFrom} - {showingTo} de {total} productos
+            </p>
             {/* Active filter chips */}
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {categorySlug && (
-                <Link href={buildUrl({ category: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#E6007E", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
+                <Link href={buildUrl({ category: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
                   {categories.find((c) => c.slug === categorySlug)?.name} ×
                 </Link>
               )}
               {(priceMin !== undefined || priceMax !== undefined) && (
-                <Link href={buildUrl({ price_min: "", price_max: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#E6007E", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
+                <Link href={buildUrl({ minPrice: "", maxPrice: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
                   ${priceMin || 0} - ${priceMax || "∞"} ×
                 </Link>
               )}
             </div>
+          </div>
+
+          {/* Sort pills */}
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 16 }}>
+            {SORT_OPTIONS.map((opt) => (
+              <Link key={opt.value} href={buildUrl({ sort: opt.value === "newest" ? "" : opt.value })} style={{
+                padding: "8px 16px", borderRadius: 9, fontSize: 13, fontWeight: 600,
+                background: sort === opt.value ? "#4A7CF7" : "#F1F5F9",
+                color: sort === opt.value ? "#fff" : "#64748B",
+              }}>
+                {opt.label}
+              </Link>
+            ))}
           </div>
 
           {/* Product grid */}
@@ -274,7 +292,7 @@ export default async function SearchPage({
             <div style={{ textAlign: "center", padding: "60px 20px" }}>
               <i className="fas fa-search" style={{ fontSize: 40, color: "#E2E8F0", marginBottom: 16, display: "block" }} />
               <h3 style={{ fontSize: 18, fontWeight: 600, color: "#0F172A", marginBottom: 8 }}>No se encontraron productos</h3>
-              <p style={{ fontSize: 14, color: "#94A3B8" }}>Intenta con otros terminos o ajusta los filtros.</p>
+              <p style={{ fontSize: 14, color: "#94A3B8" }}>Intenta con otros terminos de busqueda o ajusta los filtros para encontrar lo que necesitas.</p>
             </div>
           )}
 
@@ -282,7 +300,7 @@ export default async function SearchPage({
           {totalPages > 1 && (
             <div style={{ display: "flex", justifyContent: "center", gap: 6, marginTop: 32 }}>
               {currentPage > 1 && (
-                <Link href={`${buildUrl({})}&page=${currentPage - 1}`} style={{ padding: "8px 16px", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 13, color: "#64748B", transition: "background 0.2s" }}>Anterior</Link>
+                <Link href={`${buildUrl({})}&page=${currentPage - 1}`} style={{ padding: "8px 16px", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 13, color: "#64748B" }}>Anterior</Link>
               )}
               {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
                 let p: number;
@@ -294,15 +312,14 @@ export default async function SearchPage({
                   <Link key={p} href={`${buildUrl({})}&page=${p}`} style={{
                     width: 36, height: 36, display: "inline-flex", alignItems: "center", justifyContent: "center",
                     borderRadius: 8, fontSize: 13, fontWeight: 600,
-                    background: p === currentPage ? "#E6007E" : "#FFFFFF",
+                    background: p === currentPage ? "#4A7CF7" : "#FFFFFF",
                     color: p === currentPage ? "#fff" : "#64748B",
                     border: p === currentPage ? "none" : "1px solid #E2E8F0",
-                    transition: "background 0.2s, color 0.2s",
                   }}>{p}</Link>
                 );
               })}
               {currentPage < totalPages && (
-                <Link href={`${buildUrl({})}&page=${currentPage + 1}`} style={{ padding: "8px 16px", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 13, color: "#64748B", transition: "background 0.2s" }}>Siguiente</Link>
+                <Link href={`${buildUrl({})}&page=${currentPage + 1}`} style={{ padding: "8px 16px", background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 13, color: "#64748B" }}>Siguiente</Link>
               )}
             </div>
           )}

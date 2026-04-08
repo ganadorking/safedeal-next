@@ -142,7 +142,7 @@ export default function CookiesPage() {
                   <tbody className="divide-y divide-[#E2E8F0]">
                     {category.cookies.map((cookie) => (
                       <tr key={cookie.name}>
-                        <td className="px-6 py-3 font-mono text-[#E6007E] text-xs">
+                        <td className="px-6 py-3 font-mono text-[#4A7CF7] text-xs">
                           {cookie.name}
                         </td>
                         <td className="px-6 py-3 text-[#64748B]">
@@ -181,7 +181,7 @@ export default function CookiesPage() {
           </p>
           <p>
             Para desactivar las cookies analíticas de Google, puede instalar el{" "}
-            <span className="text-[#E6007E]">
+            <span className="text-[#4A7CF7]">
               complemento de inhabilitación de Google Analytics
             </span>{" "}
             en su navegador.

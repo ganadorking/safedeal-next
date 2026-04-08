@@ -8,13 +8,13 @@ function notifIcon(type: string) {
   const map: Record<string, { icon: string; bg: string; color: string }> = {
     order: { icon: "fa-shopping-bag", bg: "bg-blue-50", color: "text-blue-500" },
     sale: { icon: "fa-chart-line", bg: "bg-emerald-50", color: "text-emerald-500" },
-    payment: { icon: "fa-credit-card", bg: "bg-[#fce4ec]", color: "text-[#E6007E]" },
+    payment: { icon: "fa-credit-card", bg: "bg-[#fce4ec]", color: "text-[#4A7CF7]" },
     delivery: { icon: "fa-truck", bg: "bg-cyan-50", color: "text-cyan-500" },
     review: { icon: "fa-star", bg: "bg-amber-50", color: "text-amber-500" },
     dispute: { icon: "fa-gavel", bg: "bg-red-50", color: "text-red-500" },
     message: { icon: "fa-envelope", bg: "bg-sky-50", color: "text-sky-500" },
     system: { icon: "fa-bell", bg: "bg-gray-50", color: "text-gray-500" },
-    promotion: { icon: "fa-tag", bg: "bg-[#fce4ec]", color: "text-[#E6007E]" },
+    promotion: { icon: "fa-tag", bg: "bg-[#fce4ec]", color: "text-[#4A7CF7]" },
     wallet: { icon: "fa-wallet", bg: "bg-indigo-50", color: "text-indigo-500" },
   };
   return map[type] ?? map.system;
@@ -45,7 +45,7 @@ export default async function NotificationsPage() {
           <form action="/api/notifications/read-all" method="POST">
             <button
               type="submit"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#E6007E] hover:text-[#C5006B] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#4A7CF7] hover:text-[#3A65D4] transition-colors"
             >
               <i className="fa-solid fa-check-double" /> Marcar todo como leido
             </button>
@@ -84,7 +84,7 @@ export default async function NotificationsPage() {
                   <p className="text-xs text-[#94A3B8] mt-1">{timeAgo(notif.createdAt)}</p>
                 </div>
                 {!notif.isRead && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#E6007E] shrink-0 mt-2" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#4A7CF7] shrink-0 mt-2" />
                 )}
               </Wrapper>
             );

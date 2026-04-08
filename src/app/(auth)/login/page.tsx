@@ -52,7 +52,7 @@ export default function LoginPage() {
           <Link href="/" className="inline-block">
             <span className="text-3xl font-bold">
               <span className="text-[#0F172A]">Safe</span>
-              <span className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] bg-clip-text text-transparent">
                 Deal
               </span>
             </span>
@@ -64,9 +64,12 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-8">
-          <h1 className="text-xl font-bold text-[#0F172A] mb-6">
-            Iniciar Sesion
+          <h1 style={{ fontSize: 24, fontWeight: 700, color: "#0A0A0B", marginBottom: 6, letterSpacing: "-.4px" }}>
+            Bienvenido de vuelta
           </h1>
+          <p style={{ fontSize: 14, color: "#6B7280", marginBottom: 22 }}>
+            Ingresa a tu cuenta SafeDeal
+          </p>
 
           {error && (
             <div className="mb-4 p-3 rounded-[10px] bg-red-50 border border-red-200 text-red-600 text-sm">
@@ -85,7 +88,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
                 required
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
+                className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
               />
             </div>
 
@@ -99,14 +102,14 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Tu contrasena"
                 required
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
+                className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
               />
             </div>
 
             <div className="flex justify-end">
               <Link
                 href="/forgot-password"
-                className="text-sm text-[#E6007E] hover:text-[#E6007E] transition-colors"
+                className="text-sm text-[#4A7CF7] hover:text-[#4A7CF7] transition-colors"
               >
                 Olvidaste tu contrasena?
               </Link>
@@ -115,7 +118,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-11 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-11 bg-[#4A7CF7] text-white rounded-[9px] font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -141,7 +144,7 @@ export default function LoginPage() {
                   Iniciando sesion...
                 </span>
               ) : (
-                "Iniciar Sesion"
+                "Iniciar sesion"
               )}
             </button>
           </form>
@@ -193,7 +196,7 @@ export default function LoginPage() {
               No tienes cuenta?{" "}
               <Link
                 href="/register"
-                className="text-[#E6007E] hover:text-[#E6007E] font-semibold transition-colors"
+                className="text-[#4A7CF7] hover:text-[#4A7CF7] font-semibold transition-colors"
               >
                 Registrate
               </Link>
@@ -203,11 +206,11 @@ export default function LoginPage() {
 
         <p className="text-center text-xs text-[#94A3B8] mt-6">
           Al iniciar sesion aceptas nuestros{" "}
-          <Link href="/terms" className="underline hover:text-[#E6007E]">
+          <Link href="/terms" className="underline hover:text-[#4A7CF7]">
             Terminos
           </Link>{" "}
           y{" "}
-          <Link href="/privacy" className="underline hover:text-[#E6007E]">
+          <Link href="/privacy" className="underline hover:text-[#4A7CF7]">
             Politica de Privacidad
           </Link>
         </p>

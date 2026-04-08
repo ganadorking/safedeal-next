@@ -10,7 +10,7 @@ function txTypeLabel(type: string) {
     sale: { icon: "fa-cart-shopping", color: "text-emerald-500", label: "Venta" },
     purchase: { icon: "fa-shopping-bag", color: "text-blue-500", label: "Compra" },
     commission: { icon: "fa-percent", color: "text-amber-500", label: "Comision" },
-    refund: { icon: "fa-rotate-left", color: "text-[#E6007E]", label: "Reembolso" },
+    refund: { icon: "fa-rotate-left", color: "text-[#4A7CF7]", label: "Reembolso" },
     escrow_hold: { icon: "fa-lock", color: "text-gray-500", label: "Escrow" },
     escrow_release: { icon: "fa-lock-open", color: "text-emerald-500", label: "Liberacion" },
   };
@@ -32,7 +32,7 @@ export default async function WalletPage() {
       <h1 className="text-2xl font-bold text-[#0F172A]">Billetera</h1>
 
       {/* Balance Card */}
-      <div className="bg-gradient-to-br from-[#E6007E] via-[#E6007E] to-[#C5006B] rounded-[14px] p-6 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#4A7CF7] via-[#4A7CF7] to-[#3A65D4] rounded-[14px] p-6 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
         <div className="relative">
@@ -41,7 +41,7 @@ export default async function WalletPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/wallet?action=deposit"
-              className="inline-flex items-center gap-2 bg-white text-[#E6007E] font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#4A7CF7] font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-white/90 transition-colors"
             >
               <i className="fa-solid fa-plus" /> Depositar
             </Link>
@@ -64,7 +64,7 @@ export default async function WalletPage() {
         {transactions.length === 0 ? (
           <div className="p-12 text-center">
             <div className="w-14 h-14 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-3">
-              <i className="fa-solid fa-clock-rotate-left text-xl text-[#E6007E]" />
+              <i className="fa-solid fa-clock-rotate-left text-xl text-[#4A7CF7]" />
             </div>
             <p className="text-sm text-[#94A3B8]">No tienes transacciones aun</p>
           </div>

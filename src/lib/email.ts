@@ -18,7 +18,7 @@ function baseTemplate(title: string, body: string): string {
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #E2E8F0;">
         <!-- Header -->
         <tr>
-          <td style="background:linear-gradient(135deg,#E6007E 0%,#E6007E 100%);padding:32px 40px;text-align:center;">
+          <td style="background:linear-gradient(135deg,#4A7CF7 0%,#4A7CF7 100%);padding:32px 40px;text-align:center;">
             <span style="font-size:28px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">Safe</span><span style="font-size:28px;font-weight:800;color:rgba(255,255,255,0.9);letter-spacing:-0.5px;">Deal</span>
             <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.8);">${title}</p>
           </td>
@@ -44,7 +44,7 @@ function baseTemplate(title: string, body: string): string {
 }
 
 function button(text: string, href: string): string {
-  return `<a href="${href}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#E6007E 0%,#E6007E 100%);color:#ffffff;text-decoration:none;border-radius:12px;font-weight:600;font-size:14px;">${text}</a>`;
+  return `<a href="${href}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#4A7CF7 0%,#4A7CF7 100%);color:#ffffff;text-decoration:none;border-radius:12px;font-weight:600;font-size:14px;">${text}</a>`;
 }
 
 // ── sendWelcomeEmail ──────────────────────────────────────────────────
@@ -88,7 +88,7 @@ export async function sendPurchaseConfirmation(
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #E2E8F0;font-size:14px;color:#0F172A;">${item.title}</td>
         <td style="padding:10px 0;border-bottom:1px solid #E2E8F0;font-size:14px;color:#64748B;text-align:center;">x${item.quantity}</td>
-        <td style="padding:10px 0;border-bottom:1px solid #E2E8F0;font-size:14px;color:#E6007E;text-align:right;font-weight:600;">$${(item.price * item.quantity).toFixed(2)}</td>
+        <td style="padding:10px 0;border-bottom:1px solid #E2E8F0;font-size:14px;color:#4A7CF7;text-align:right;font-weight:600;">$${(item.price * item.quantity).toFixed(2)}</td>
       </tr>`
     )
     .join('');
@@ -98,7 +98,7 @@ export async function sendPurchaseConfirmation(
     <p style="margin:0 0 24px;font-size:15px;color:#64748B;">Tu pago ha sido procesado exitosamente.</p>
     <div style="background:#F8FAFC;border-radius:12px;padding:16px 20px;margin-bottom:24px;">
       <p style="margin:0;font-size:13px;color:#94A3B8;">Numero de orden</p>
-      <p style="margin:4px 0 0;font-size:18px;font-weight:700;color:#E6007E;">${orderNumber}</p>
+      <p style="margin:4px 0 0;font-size:18px;font-weight:700;color:#4A7CF7;">${orderNumber}</p>
     </div>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
       <tr>
@@ -110,7 +110,7 @@ export async function sendPurchaseConfirmation(
     </table>
     <div style="text-align:right;margin-bottom:24px;">
       <span style="font-size:13px;color:#64748B;">Total: </span>
-      <span style="font-size:20px;font-weight:700;color:#E6007E;">$${total.toFixed(2)}</span>
+      <span style="font-size:20px;font-weight:700;color:#4A7CF7;">$${total.toFixed(2)}</span>
     </div>
     <div style="text-align:center;">
       ${button('Ver mi pedido', `${process.env.NEXT_PUBLIC_APP_URL || 'https://safedeal.com'}/purchases`)}
@@ -220,7 +220,7 @@ export async function sendPasswordReset(to: string, resetLink: string) {
     </div>
     <p style="margin:0;font-size:12px;color:#94A3B8;line-height:1.6;">
       Este enlace expira en 1 hora. Si no puedes hacer clic en el boton, copia y pega esta URL en tu navegador:<br/>
-      <span style="color:#E6007E;word-break:break-all;">${resetLink}</span>
+      <span style="color:#4A7CF7;word-break:break-all;">${resetLink}</span>
     </p>
   `;
 

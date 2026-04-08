@@ -35,9 +35,9 @@ const STATUS_CONFIG: Record<
   },
   delivered: {
     label: "Entregado",
-    color: "text-[#C5006B]",
+    color: "text-[#3A65D4]",
     bg: "bg-[#fce4ec]",
-    border: "border-[#E6007E]/30",
+    border: "border-[#4A7CF7]/30",
   },
   completed: {
     label: "Completado",
@@ -143,7 +143,7 @@ export default async function OrderPage({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div>
             <nav className="flex items-center gap-2 text-sm text-[#94A3B8] mb-2">
-              <Link href="/" className="hover:text-[#E6007E] transition-colors">
+              <Link href="/" className="hover:text-[#4A7CF7] transition-colors">
                 Inicio
               </Link>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,7 +174,7 @@ export default async function OrderPage({
             {/* Progress line */}
             <div className="absolute top-4 left-0 right-0 h-0.5 bg-[#E2E8F0]" />
             <div
-              className="absolute top-4 left-0 h-0.5 bg-gradient-to-r from-[#E6007E] to-[#C5006B] transition-all"
+              className="absolute top-4 left-0 h-0.5 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] transition-all"
               style={{
                 width:
                   currentStepIndex >= 0
@@ -192,9 +192,9 @@ export default async function OrderPage({
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
                       isCompleted
-                        ? "bg-gradient-to-r from-[#E6007E] to-[#C5006B] border-[#E6007E] text-white"
+                        ? "bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] border-[#4A7CF7] text-white"
                         : "bg-white border-[#E2E8F0] text-[#94A3B8]"
-                    } ${isCurrent ? "ring-4 ring-[#E6007E]/20" : ""}`}
+                    } ${isCurrent ? "ring-4 ring-[#4A7CF7]/20" : ""}`}
                   >
                     {isCompleted ? (
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default async function OrderPage({
                     <div className="flex-1 min-w-0">
                       <Link
                         href={`/product/${item.product.slug}`}
-                        className="text-sm font-semibold text-[#0F172A] hover:text-[#E6007E] transition-colors line-clamp-1"
+                        className="text-sm font-semibold text-[#0F172A] hover:text-[#4A7CF7] transition-colors line-clamp-1"
                       >
                         {item.product.title}
                       </Link>
@@ -261,7 +261,7 @@ export default async function OrderPage({
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-bold text-[#E6007E]">
+                      <p className="text-sm font-bold text-[#4A7CF7]">
                         {formatPrice(Number(item.subtotal))}
                       </p>
                     </div>
@@ -324,7 +324,7 @@ export default async function OrderPage({
                 <div className="border-t border-[#E2E8F0] pt-3">
                   <div className="flex justify-between">
                     <span className="font-bold text-[#0F172A]">Total</span>
-                    <span className="text-lg font-bold text-[#E6007E]">
+                    <span className="text-lg font-bold text-[#4A7CF7]">
                       {formatPrice(Number(order.total))}
                     </span>
                   </div>
@@ -405,7 +405,7 @@ export default async function OrderPage({
                   <span className="text-sm text-[#94A3B8]">Comprador</span>
                   <Link
                     href={`/seller/${order.buyer.username}`}
-                    className="text-sm font-semibold text-[#E6007E] hover:text-[#E6007E] transition-colors"
+                    className="text-sm font-semibold text-[#4A7CF7] hover:text-[#4A7CF7] transition-colors"
                   >
                     {order.buyer.username}
                   </Link>
@@ -415,7 +415,7 @@ export default async function OrderPage({
                     <span className="text-sm text-[#94A3B8]">Vendedor</span>
                     <Link
                       href={`/seller/${order.seller.username}`}
-                      className="text-sm font-semibold text-[#E6007E] hover:text-[#E6007E] transition-colors"
+                      className="text-sm font-semibold text-[#4A7CF7] hover:text-[#4A7CF7] transition-colors"
                     >
                       {order.seller.username}
                     </Link>
@@ -438,7 +438,7 @@ export default async function OrderPage({
               )}
               <Link
                 href="/"
-                className="block w-full text-center h-11 leading-[44px] border-[1.5px] border-[#E2E8F0] text-[#64748B] rounded-xl font-semibold hover:border-[#E6007E] hover:text-[#E6007E] transition-all text-sm"
+                className="block w-full text-center h-11 leading-[44px] border-[1.5px] border-[#E2E8F0] text-[#64748B] rounded-xl font-semibold hover:border-[#4A7CF7] hover:text-[#4A7CF7] transition-all text-sm"
               >
                 Volver al inicio
               </Link>

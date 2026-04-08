@@ -48,7 +48,7 @@ export default async function SalesPage() {
         <h1 className="text-2xl font-bold text-[#0F172A]">Mis Ventas</h1>
         <div className="text-right">
           <p className="text-sm text-[#94A3B8]">{orderItems.length} ventas</p>
-          <p className="text-lg font-bold text-[#E6007E]">${totalRevenue.toFixed(2)}</p>
+          <p className="text-lg font-bold text-[#4A7CF7]">${totalRevenue.toFixed(2)}</p>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default async function SalesPage() {
                     {item.product.mainImage ? (
                       <img src={item.product.mainImage} alt="" className="w-full h-full object-cover rounded-lg" />
                     ) : (
-                      <i className="fa-solid fa-box text-[#E6007E] text-sm" />
+                      <i className="fa-solid fa-box text-[#4A7CF7] text-sm" />
                     )}
                   </div>
                   <div className="min-w-0">
@@ -96,7 +96,7 @@ export default async function SalesPage() {
 
                 {/* Buyer */}
                 <div className="col-span-2 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
                     {item.order.buyer.avatarUrl ? (
                       <img src={item.order.buyer.avatarUrl} alt="" className="w-full h-full rounded-full object-cover" />
                     ) : (
@@ -113,7 +113,7 @@ export default async function SalesPage() {
 
                 {/* Subtotal */}
                 <div className="col-span-2 flex items-center">
-                  <span className="text-sm font-semibold text-[#E6007E]">${Number(item.subtotal).toFixed(2)}</span>
+                  <span className="text-sm font-semibold text-[#4A7CF7]">${Number(item.subtotal).toFixed(2)}</span>
                 </div>
 
                 {/* Date */}

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/providers";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 interface Profile {
   id: number;
@@ -101,6 +102,24 @@ export default function Navbar() {
   const [catPanelOpen, setCatPanelOpen] = useState(false);
   const [hamOpen, setHamOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
+
+  // Auth popup
+  const [authPopupOpen, setAuthPopupOpen] = useState(false);
+  const [authPanel, setAuthPanel] = useState<"login" | "register">("login");
+  const [authError, setAuthError] = useState("");
+  const [authLoading, setAuthLoading] = useState(false);
+  // Login fields
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  // Register fields
+  const [regFirstName, setRegFirstName] = useState("");
+  const [regLastName, setRegLastName] = useState("");
+  const [regUsername, setRegUsername] = useState("");
+  const [regEmail, setRegEmail] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regConfirmPassword, setRegConfirmPassword] = useState("");
+  const [showRegPassword, setShowRegPassword] = useState(false);
+  const [showRegConfirm, setShowRegConfirm] = useState(false);
 
   const searchRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
@@ -211,6 +230,142 @@ export default function Navbar() {
     setHamOpen(false);
   };
 
+  // Password strength
+  const passStrength = (() => {
+    let s = 0;
+    if (regPassword.length >= 8) s++;
+    if (/[A-Z]/.test(regPassword)) s++;
+    if (/[0-9]/.test(regPassword)) s++;
+    if (/[^a-zA-Z0-9]/.test(regPassword)) s++;
+    return s;
+  })();
+  const strengthLabel = ["", "Debil", "Regular", "Buena", "Fuerte"][passStrength] || "";
+  const strengthColor = ["#EBEBEC", "#ef4444", "#f59e0b", "#4A7CF7", "#10b981"][passStrength] || "#EBEBEC";
+
+  function closeAuthPopup() {
+    setAuthPopupOpen(false);
+    setAuthError("");
+  }
+
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    setAuthError("");
+    setAuthLoading(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithPassword({
+        email: loginEmail,
+        password: loginPassword,
+      });
+      if (error) {
+        if (error.message.includes("Invalid login")) {
+          setAuthError("Email o contrasena incorrectos");
+        } else if (error.message.includes("Email not confirmed")) {
+          setAuthError("Debes confirmar tu email antes de iniciar sesion");
+        } else {
+          setAuthError(error.message);
+        }
+        return;
+      }
+      closeAuthPopup();
+      setLoginEmail("");
+      setLoginPassword("");
+      router.push("/");
+      router.refresh();
+    } catch {
+      setAuthError("Error inesperado. Intenta de nuevo.");
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  async function handleRegister(e: React.FormEvent) {
+    e.preventDefault();
+    setAuthError("");
+    // Validate
+    if (!regFirstName.trim() || !regLastName.trim()) {
+      setAuthError("Nombre y apellido son obligatorios");
+      return;
+    }
+    if (regUsername.length < 3) {
+      setAuthError("El nombre de usuario debe tener al menos 3 caracteres");
+      return;
+    }
+    if (!/^[a-zA-Z0-9_]+$/.test(regUsername)) {
+      setAuthError("El nombre de usuario solo puede contener letras, numeros y guion bajo");
+      return;
+    }
+    if (regPassword.length < 8) {
+      setAuthError("La contrasena debe tener al menos 8 caracteres");
+      return;
+    }
+    if (!/[A-Z]/.test(regPassword)) {
+      setAuthError("La contrasena debe tener al menos una letra mayuscula");
+      return;
+    }
+    if (!/[0-9]/.test(regPassword)) {
+      setAuthError("La contrasena debe tener al menos un numero");
+      return;
+    }
+    if (regPassword !== regConfirmPassword) {
+      setAuthError("Las contrasenas no coinciden");
+      return;
+    }
+    setAuthLoading(true);
+    try {
+      const supabase = createClient();
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: regEmail,
+        password: regPassword,
+        options: { data: { username: regUsername } },
+      });
+      if (authError) {
+        if (authError.message.includes("already registered")) {
+          setAuthError("Este email ya esta registrado");
+        } else {
+          setAuthError(authError.message);
+        }
+        return;
+      }
+      if (!authData.user) {
+        setAuthError("Error al crear la cuenta. Intenta de nuevo.");
+        return;
+      }
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: regUsername,
+          email: regEmail,
+          firstName: regFirstName.trim(),
+          lastName: regLastName.trim(),
+          supabaseId: authData.user.id,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setAuthError(data.error || "Error al crear el perfil");
+        return;
+      }
+      closeAuthPopup();
+      router.push("/login?registered=1");
+    } catch {
+      setAuthError("Error inesperado. Intenta de nuevo.");
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  async function handleGoogleAuth() {
+    const supabase = createClient();
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin + "/api/auth/callback",
+      },
+    });
+  }
+
   const initials = profile?.username
     ? profile.username.slice(0, 1).toUpperCase()
     : "S";
@@ -240,7 +395,7 @@ export default function Navbar() {
             <Link href="/" className="sd-nav-logo">
               <span className="sd-logo-txt">
                 <span style={{ color: "#fff" }}>Safe</span>
-                <span style={{ color: "#E6007E" }}>Deal</span>
+                <span style={{ color: "#4A7CF7" }}>Deal</span>
               </span>
             </Link>
 
@@ -391,9 +546,17 @@ export default function Navbar() {
                     <i className="fas fa-shopping-cart"></i>
                   </Link>
                   <div className="sd-nav-auth-wrap">
-                    <Link href="/login" className="sd-nav-auth-btn" title="Mi cuenta">
+                    <button
+                      className="sd-nav-auth-btn"
+                      title="Mi cuenta"
+                      onClick={() => {
+                        setAuthPopupOpen(true);
+                        setAuthPanel("login");
+                        setAuthError("");
+                      }}
+                    >
                       <i className="far fa-user"></i>
-                    </Link>
+                    </button>
                   </div>
                 </>
               ) : null}
@@ -513,25 +676,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ===== CATEGORIES BAR ===== */}
-      <div className="sd-cat-bar">
-        <div className="sd-cat-bar-inner">
-          {CAT_BAR_ITEMS.map((cat) => (
-            <Link
-              key={cat.slug}
-              href={`/category/${cat.slug}`}
-              className="sd-cat-bar-link"
-            >
-              <i className={`fas ${cat.icon}`}></i>
-              {cat.label}
-            </Link>
-          ))}
-          <Link href="/sell" className="sd-cat-bar-link sell">
-            <i className="fas fa-plus"></i>
-            Vender
-          </Link>
-        </div>
-      </div>
 
       {/* ===== CATEGORY SIDEBAR OVERLAY ===== */}
       <div
@@ -565,6 +709,255 @@ export default function Navbar() {
           </div>
         ))}
       </div>
+
+      {/* ===== AUTH POPUP ===== */}
+      {authPopupOpen && (
+        <div className="sd-auth-overlay show" onClick={closeAuthPopup}>
+          <div
+            className="sd-auth-popup open"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sd-mob-handle"></div>
+            <div className="sd-ap-header">
+              <button
+                className="sd-ap-close"
+                onClick={closeAuthPopup}
+                aria-label="Cerrar"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+
+            {/* LOGIN PANEL */}
+            <div className={`sd-ap-panel${authPanel === "login" ? " active" : ""}`}>
+              <div className="sd-ap-title">Bienvenido de vuelta</div>
+              <div className="sd-ap-sub">Ingresa a tu cuenta SafeDeal</div>
+
+              {authError && authPanel === "login" && (
+                <div style={{ marginBottom: 12, padding: "10px 14px", borderRadius: 10, background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", fontSize: 13 }}>
+                  {authError}
+                </div>
+              )}
+
+              <form onSubmit={handleLogin}>
+                <div className="sd-ap-field">
+                  <i className="fas fa-envelope sd-input-icon"></i>
+                  <input
+                    type="email"
+                    placeholder=" "
+                    required
+                    autoComplete="email"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                  />
+                  <label>Correo electrónico</label>
+                </div>
+                <div className="sd-ap-field">
+                  <i className="fas fa-lock sd-input-icon"></i>
+                  <input
+                    type="password"
+                    placeholder=" "
+                    required
+                    autoComplete="current-password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                  />
+                  <label>Contraseña</label>
+                </div>
+                <Link href="/forgot-password" className="sd-ap-forgot" onClick={closeAuthPopup}>
+                  ¿Olvidaste tu contraseña?
+                </Link>
+                <button type="submit" className="sd-ap-submit" disabled={authLoading}>
+                  {authLoading ? "Iniciando sesion..." : "Iniciar sesión"}
+                </button>
+              </form>
+
+              <div className="sd-ap-or"><span>o continúa con</span></div>
+              <button type="button" className="sd-ap-google" onClick={handleGoogleAuth}>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Continuar con Google
+              </button>
+              <div className="sd-ap-switch">
+                ¿No tienes cuenta?{" "}
+                <a onClick={() => { setAuthPanel("register"); setAuthError(""); }}>
+                  Regístrate gratis
+                </a>
+              </div>
+            </div>
+
+            {/* REGISTER PANEL */}
+            <div className={`sd-ap-panel${authPanel === "register" ? " active" : ""}`}>
+              <div className="sd-ap-title">Crear cuenta</div>
+              <div className="sd-ap-sub">Es gratis y solo toma un minuto</div>
+
+              {authError && authPanel === "register" && (
+                <div style={{ marginBottom: 12, padding: "10px 14px", borderRadius: 10, background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", fontSize: 13 }}>
+                  {authError}
+                </div>
+              )}
+
+              <form onSubmit={handleRegister}>
+                <div className="sd-ap-row">
+                  <div className="sd-ap-field">
+                    <input
+                      type="text"
+                      placeholder=" "
+                      required
+                      className="no-icon"
+                      value={regFirstName}
+                      onChange={(e) => setRegFirstName(e.target.value)}
+                    />
+                    <label className="no-icon">Nombre</label>
+                  </div>
+                  <div className="sd-ap-field">
+                    <input
+                      type="text"
+                      placeholder=" "
+                      required
+                      className="no-icon"
+                      value={regLastName}
+                      onChange={(e) => setRegLastName(e.target.value)}
+                    />
+                    <label className="no-icon">Apellido</label>
+                  </div>
+                </div>
+                <div className="sd-ap-field">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    required
+                    autoComplete="username"
+                    className="no-icon"
+                    pattern="[a-zA-Z0-9_]{3,20}"
+                    title="3-20 caracteres, solo letras, números y _"
+                    value={regUsername}
+                    onChange={(e) => setRegUsername(e.target.value.toLowerCase())}
+                  />
+                  <label className="no-icon">Nombre de usuario</label>
+                </div>
+                <div className="sd-ap-field">
+                  <i className="fas fa-envelope sd-input-icon"></i>
+                  <input
+                    type="email"
+                    placeholder=" "
+                    required
+                    autoComplete="email"
+                    value={regEmail}
+                    onChange={(e) => setRegEmail(e.target.value)}
+                  />
+                  <label>Correo electrónico</label>
+                </div>
+                {/* Password with toggle */}
+                <div className="sd-ap-field sd-pass-wrap">
+                  <i className="fas fa-lock sd-input-icon"></i>
+                  <input
+                    type={showRegPassword ? "text" : "password"}
+                    placeholder=" "
+                    required
+                    autoComplete="new-password"
+                    value={regPassword}
+                    onChange={(e) => setRegPassword(e.target.value)}
+                  />
+                  <label>Contraseña</label>
+                  <button
+                    type="button"
+                    className="sd-pass-toggle"
+                    tabIndex={-1}
+                    onClick={() => setShowRegPassword(!showRegPassword)}
+                  >
+                    <i className={`far ${showRegPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                  </button>
+                </div>
+                {/* Strength bar */}
+                {regPassword.length > 0 && (
+                  <>
+                    <div className="sd-strength-bar">
+                      {[1,2,3,4].map(i => (
+                        <div
+                          key={i}
+                          className="sd-strength-seg"
+                          style={{ background: i <= passStrength ? strengthColor : "#EBEBEC" }}
+                        ></div>
+                      ))}
+                    </div>
+                    <div className="sd-strength-lbl" style={{ color: strengthColor }}>{strengthLabel}</div>
+                    <div className="sd-pass-reqs">
+                      <div className={`sd-req${regPassword.length >= 8 ? " met" : ""}`}>
+                        <i className="fas fa-circle"></i> Mínimo 8 caracteres
+                      </div>
+                      <div className={`sd-req${/[A-Z]/.test(regPassword) ? " met" : ""}`}>
+                        <i className="fas fa-circle"></i> Una letra mayúscula
+                      </div>
+                      <div className={`sd-req${/[0-9]/.test(regPassword) ? " met" : ""}`}>
+                        <i className="fas fa-circle"></i> Un número
+                      </div>
+                      <div className={`sd-req${/[^a-zA-Z0-9]/.test(regPassword) ? " met" : ""}`}>
+                        <i className="fas fa-circle"></i> Un carácter especial (!@#$...)
+                      </div>
+                    </div>
+                  </>
+                )}
+                {/* Confirm password */}
+                <div className="sd-ap-field sd-pass-wrap">
+                  <i className="fas fa-lock sd-input-icon"></i>
+                  <input
+                    type={showRegConfirm ? "text" : "password"}
+                    placeholder=" "
+                    required
+                    autoComplete="new-password"
+                    value={regConfirmPassword}
+                    onChange={(e) => setRegConfirmPassword(e.target.value)}
+                  />
+                  <label>Confirmar contraseña</label>
+                  <button
+                    type="button"
+                    className="sd-pass-toggle"
+                    tabIndex={-1}
+                    onClick={() => setShowRegConfirm(!showRegConfirm)}
+                  >
+                    <i className={`far ${showRegConfirm ? "fa-eye-slash" : "fa-eye"}`}></i>
+                  </button>
+                </div>
+                {regConfirmPassword.length > 0 && (
+                  <div
+                    className="sd-confirm-msg"
+                    style={{ color: regPassword === regConfirmPassword ? "#10b981" : "#ef4444" }}
+                  >
+                    {regPassword === regConfirmPassword
+                      ? "Las contrasenas coinciden"
+                      : "Las contrasenas no coinciden"}
+                  </div>
+                )}
+                <button type="submit" className="sd-ap-submit" disabled={authLoading}>
+                  {authLoading ? "Creando cuenta..." : "Crear cuenta gratis"}
+                </button>
+              </form>
+
+              <div className="sd-ap-or"><span>o regístrate con</span></div>
+              <button type="button" className="sd-ap-google" onClick={handleGoogleAuth}>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Continuar con Google
+              </button>
+              <div className="sd-ap-switch">
+                ¿Ya tienes cuenta?{" "}
+                <a onClick={() => { setAuthPanel("login"); setAuthError(""); }}>
+                  Inicia sesión
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -97,7 +97,7 @@ export default function HowToSellPage() {
         <ul className="space-y-3">
           {requirements.map((req) => (
             <li key={req} className="flex items-center gap-3 text-[#64748B]">
-              <span className="w-5 h-5 rounded-full bg-[#fce4ec] text-[#E6007E] flex items-center justify-center flex-shrink-0">
+              <span className="w-5 h-5 rounded-full bg-[#fce4ec] text-[#4A7CF7] flex items-center justify-center flex-shrink-0">
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
@@ -117,7 +117,7 @@ export default function HowToSellPage() {
             key={step.number}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-8 flex items-start gap-6"
           >
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold text-lg">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold text-lg">
               {step.number}
             </div>
             <div>

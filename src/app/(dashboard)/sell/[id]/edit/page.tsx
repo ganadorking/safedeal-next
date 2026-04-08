@@ -153,13 +153,13 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
   if (authLoading || loadingProduct) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   const inputClass =
-    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors";
+    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors";
   const labelClass = "block text-sm font-medium text-[#64748B] mb-1.5";
 
   return (
@@ -189,12 +189,12 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         {/* Image Upload */}
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-6">
           <h3 className="text-lg font-semibold text-[#0F172A] mb-4">Imagen Principal</h3>
-          <label className="w-40 h-40 rounded-xl border-2 border-dashed border-[#E2E8F0] bg-[#F8FAFC] flex flex-col items-center justify-center cursor-pointer hover:border-[#E6007E] transition-colors shrink-0 overflow-hidden">
+          <label className="w-40 h-40 rounded-xl border-2 border-dashed border-[#E2E8F0] bg-[#F8FAFC] flex flex-col items-center justify-center cursor-pointer hover:border-[#4A7CF7] transition-colors shrink-0 overflow-hidden">
             {imagePreview ? (
               <img src={imagePreview} alt="Preview" className="w-full h-full object-cover rounded-xl" />
             ) : (
               <>
-                <i className="fa-solid fa-cloud-arrow-up text-2xl text-[#E6007E] mb-2" />
+                <i className="fa-solid fa-cloud-arrow-up text-2xl text-[#4A7CF7] mb-2" />
                 <span className="text-xs text-[#94A3B8]">Cambiar imagen</span>
               </>
             )}
@@ -222,7 +222,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={5}
-              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors resize-none"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors resize-none"
             />
           </div>
 
@@ -282,7 +282,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           <div className="flex items-center gap-3">
             <label className="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} className="sr-only peer" />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:ring-2 peer-focus:ring-[#E6007E]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E6007E]" />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:ring-2 peer-focus:ring-[#4A7CF7]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#4A7CF7]" />
             </label>
             <span className="text-sm text-[#64748B]">Producto activo</span>
           </div>
@@ -293,7 +293,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           <button
             type="submit"
             disabled={submitting}
-            className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#E6007E] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#4A7CF7] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
             {submitting ? (
               <>

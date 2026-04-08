@@ -102,7 +102,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
   if (loading || loadingChat) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -124,7 +124,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
         <button onClick={() => router.push("/messages")} className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] transition-colors shrink-0">
           <i className="fa-solid fa-arrow-left text-sm" />
         </button>
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold shrink-0">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold shrink-0">
           {otherUser?.avatarUrl ? (
             <img src={otherUser.avatarUrl} alt="" className="w-full h-full rounded-full object-cover" />
           ) : (
@@ -142,7 +142,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
         {messages.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-14 h-14 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-3">
-              <i className="fa-solid fa-comments text-xl text-[#E6007E]" />
+              <i className="fa-solid fa-comments text-xl text-[#4A7CF7]" />
             </div>
             <p className="text-sm text-[#94A3B8]">Inicia la conversacion</p>
           </div>
@@ -154,7 +154,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
                 <div
                   className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
                     isMine
-                      ? "bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-br-md"
+                      ? "bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-br-md"
                       : "bg-white border border-[#E2E8F0] text-[#0F172A] rounded-bl-md"
                   }`}
                 >
@@ -178,12 +178,12 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Escribe un mensaje..."
-            className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+            className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
           />
           <button
             type="submit"
             disabled={sending || !newMessage.trim()}
-            className="w-11 h-11 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl flex items-center justify-center hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 shrink-0"
+            className="w-11 h-11 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl flex items-center justify-center hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 shrink-0"
           >
             {sending ? (
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

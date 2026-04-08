@@ -7,28 +7,53 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   function validate(): string | null {
+    if (!firstName.trim() || !lastName.trim()) {
+      return "Nombre y apellido son obligatorios";
+    }
     if (username.length < 3) {
       return "El nombre de usuario debe tener al menos 3 caracteres";
     }
     if (!/^[a-zA-Z0-9_]+$/.test(username)) {
       return "El nombre de usuario solo puede contener letras, numeros y guion bajo";
     }
-    if (password.length < 6) {
-      return "La contrasena debe tener al menos 6 caracteres";
+    if (password.length < 8) {
+      return "La contrasena debe tener al menos 8 caracteres";
+    }
+    if (!/[A-Z]/.test(password)) {
+      return "La contrasena debe tener al menos una letra mayuscula";
+    }
+    if (!/[0-9]/.test(password)) {
+      return "La contrasena debe tener al menos un numero";
     }
     if (password !== confirmPassword) {
       return "Las contrasenas no coinciden";
     }
     return null;
   }
+
+  const passStrength = (() => {
+    let s = 0;
+    if (password.length >= 8) s++;
+    if (/[A-Z]/.test(password)) s++;
+    if (/[0-9]/.test(password)) s++;
+    if (/[^a-zA-Z0-9]/.test(password)) s++;
+    return s;
+  })();
+
+  const strengthLabel = ["", "Debil", "Regular", "Buena", "Fuerte"][passStrength] || "";
+  const strengthColor = ["#EBEBEC", "#ef4444", "#f59e0b", "#4A7CF7", "#10b981"][passStrength] || "#EBEBEC";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -75,6 +100,8 @@ export default function RegisterPage() {
         body: JSON.stringify({
           username,
           email,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
           supabaseId: authData.user.id,
         }),
       });
@@ -101,7 +128,7 @@ export default function RegisterPage() {
           <Link href="/" className="inline-block">
             <span className="text-3xl font-bold">
               <span className="text-[#0F172A]">Safe</span>
-              <span className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] bg-clip-text text-transparent">
                 Deal
               </span>
             </span>
@@ -113,9 +140,12 @@ export default function RegisterPage() {
 
         {/* Card */}
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-8">
-          <h1 className="text-xl font-bold text-[#0F172A] mb-6">
-            Crear Cuenta
+          <h1 style={{ fontSize: 24, fontWeight: 700, color: "#0A0A0B", marginBottom: 6, letterSpacing: "-.4px" }}>
+            Crear cuenta
           </h1>
+          <p style={{ fontSize: 14, color: "#6B7280", marginBottom: 22 }}>
+            Es gratis y solo toma un minuto
+          </p>
 
           {error && (
             <div className="mb-4 p-3 rounded-[10px] bg-red-50 border border-red-200 text-red-600 text-sm">
@@ -124,10 +154,35 @@ export default function RegisterPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Nombre y Apellido */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <div>
+                <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Nombre</label>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Tu nombre"
+                  required
+                  className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Apellido</label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Tu apellido"
+                  required
+                  className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Username */}
             <div>
-              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">
-                Nombre de usuario
-              </label>
+              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Nombre de usuario</label>
               <input
                 type="text"
                 value={username}
@@ -135,61 +190,92 @@ export default function RegisterPage() {
                 placeholder="mi_usuario"
                 required
                 minLength={3}
-                maxLength={50}
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
+                maxLength={20}
+                pattern="[a-zA-Z0-9_]{3,20}"
+                className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
               />
-              <p className="text-xs text-[#94A3B8] mt-1">
-                Minimo 3 caracteres. Solo letras, numeros y _
-              </p>
             </div>
 
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">
-                Email
-              </label>
+              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Correo electronico</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
                 required
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
+                className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
               />
             </div>
 
+            {/* Password + strength */}
             <div>
-              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">
-                Contrasena
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Minimo 6 caracteres"
-                required
-                minLength={6}
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
-              />
+              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Contrasena</label>
+              <div style={{ position: "relative" }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Minimo 8 caracteres"
+                  required
+                  minLength={8}
+                  className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 pr-10 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9CA3AF", fontSize: 14, padding: 4 }}
+                >
+                  <i className={`far ${showPassword ? "fa-eye-slash" : "fa-eye"}`} />
+                </button>
+              </div>
+              {/* Strength bar */}
+              {password.length > 0 && (
+                <>
+                  <div style={{ display: "flex", gap: 4, marginTop: 5 }}>
+                    {[1,2,3,4].map(i => (
+                      <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= passStrength ? strengthColor : "#EBEBEC" }} />
+                    ))}
+                  </div>
+                  <div style={{ fontSize: 11, color: strengthColor, marginTop: 2 }}>{strengthLabel}</div>
+                </>
+              )}
             </div>
 
+            {/* Confirm password */}
             <div>
-              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">
-                Confirmar contrasena
-              </label>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Repite tu contrasena"
-                required
-                className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
-              />
+              <label className="block text-sm font-medium text-[#0F172A] mb-1.5">Confirmar contrasena</label>
+              <div style={{ position: "relative" }}>
+                <input
+                  type={showConfirm ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Repite tu contrasena"
+                  required
+                  className="w-full bg-[#F5F5F6] border-[1.5px] border-[#EBEBEC] rounded-[10px] h-11 px-4 pr-10 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9CA3AF", fontSize: 14, padding: 4 }}
+                >
+                  <i className={`far ${showConfirm ? "fa-eye-slash" : "fa-eye"}`} />
+                </button>
+              </div>
+              {confirmPassword.length > 0 && (
+                <div style={{ fontSize: 11, marginTop: 3, color: password === confirmPassword ? "#10b981" : "#ef4444" }}>
+                  {password === confirmPassword ? "Las contrasenas coinciden" : "Las contrasenas no coinciden"}
+                </div>
+              )}
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-11 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              className="w-full h-11 bg-[#4A7CF7] text-white rounded-[9px] font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed mt-2"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -215,7 +301,7 @@ export default function RegisterPage() {
                   Creando cuenta...
                 </span>
               ) : (
-                "Crear Cuenta"
+                "Crear cuenta gratis"
               )}
             </button>
           </form>
@@ -267,7 +353,7 @@ export default function RegisterPage() {
               Ya tienes cuenta?{" "}
               <Link
                 href="/login"
-                className="text-[#E6007E] hover:text-[#E6007E] font-semibold transition-colors"
+                className="text-[#4A7CF7] hover:text-[#4A7CF7] font-semibold transition-colors"
               >
                 Inicia Sesion
               </Link>
@@ -277,11 +363,11 @@ export default function RegisterPage() {
 
         <p className="text-center text-xs text-[#94A3B8] mt-6">
           Al registrarte aceptas nuestros{" "}
-          <Link href="/terms" className="underline hover:text-[#E6007E]">
+          <Link href="/terms" className="underline hover:text-[#4A7CF7]">
             Terminos
           </Link>{" "}
           y{" "}
-          <Link href="/privacy" className="underline hover:text-[#E6007E]">
+          <Link href="/privacy" className="underline hover:text-[#4A7CF7]">
             Politica de Privacidad
           </Link>
         </p>

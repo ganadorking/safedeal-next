@@ -175,13 +175,13 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-3 border-[#E6007E] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#4A7CF7] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   const inputClass =
-    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors";
+    "w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors";
   const labelClass = "block text-sm font-medium text-[#64748B] mb-1.5";
 
   const Toggle = ({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) => (
@@ -189,7 +189,7 @@ export default function SettingsPage() {
       <span className="text-sm text-[#64748B]">{label}</span>
       <label className="relative inline-flex items-center cursor-pointer">
         <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="sr-only peer" />
-        <div className="w-11 h-6 bg-gray-200 peer-focus:ring-2 peer-focus:ring-[#E6007E]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E6007E]" />
+        <div className="w-11 h-6 bg-gray-200 peer-focus:ring-2 peer-focus:ring-[#4A7CF7]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#4A7CF7]" />
       </label>
     </div>
   );
@@ -239,7 +239,7 @@ export default function SettingsPage() {
           <button
             type="submit"
             disabled={savingPassword}
-            className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 flex items-center gap-2"
+            className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 flex items-center gap-2"
           >
             {savingPassword ? (
               <>
@@ -257,7 +257,7 @@ export default function SettingsPage() {
       <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-xl bg-[#fce4ec] flex items-center justify-center">
-            <i className="fa-solid fa-shield-halved text-[#E6007E]" />
+            <i className="fa-solid fa-shield-halved text-[#4A7CF7]" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-[#0F172A]">Autenticacion de Dos Factores</h3>
@@ -293,7 +293,7 @@ export default function SettingsPage() {
             <button
               onClick={handleEnable2FA}
               disabled={twoFaLoading}
-              className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-5 py-2 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 flex items-center gap-2"
+              className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-5 py-2 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 flex items-center gap-2"
             >
               {twoFaLoading ? (
                 <>
@@ -363,7 +363,7 @@ export default function SettingsPage() {
           <button
             onClick={handleVerify2FA}
             disabled={twoFaLoading || verifyCode.length !== 6}
-            className="w-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {twoFaLoading ? (
               <>
@@ -451,7 +451,7 @@ export default function SettingsPage() {
           <button
             onClick={handleSavePreferences}
             disabled={savingPrefs}
-            className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 flex items-center gap-2"
+            className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 flex items-center gap-2"
           >
             {savingPrefs ? (
               <>

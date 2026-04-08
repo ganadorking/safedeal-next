@@ -91,7 +91,7 @@ export default function DebugPage() {
     <div style={{ maxWidth: 800, margin: "40px auto", padding: "0 20px", fontFamily: "monospace" }}>
       <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 20 }}>SafeDeal Debug</h1>
 
-      <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 10, color: "#0075FF" }}>Environment Variables</h2>
+      <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 10, color: "#4A7CF7" }}>Environment Variables</h2>
       <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30, fontSize: 13 }}>
         <tbody>
           {Object.entries(results).map(([key, val]) => (

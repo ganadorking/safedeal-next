@@ -9,7 +9,7 @@ const promoCoupons = [
     description: "Descuento de bienvenida en tu primera compra",
     minPurchase: 5.0,
     expiresAt: "2026-06-30",
-    gradient: "from-[#E6007E] to-[#C5006B]",
+    gradient: "from-[#4A7CF7] to-[#3A65D4]",
     icon: "fa-gift",
   },
   {
@@ -82,12 +82,12 @@ export default async function CouponsPage() {
               {/* Code + Copy */}
               <div className="flex items-center gap-2 mb-3">
                 <div className="flex-1 bg-[#F8FAFC] border border-dashed border-[#E2E8F0] rounded-[10px] px-4 py-2.5 text-center">
-                  <span className="font-mono text-sm font-bold text-[#E6007E] tracking-wider">{coupon.code}</span>
+                  <span className="font-mono text-sm font-bold text-[#4A7CF7] tracking-wider">{coupon.code}</span>
                 </div>
                 <button
                   onClick={undefined}
                   data-code={coupon.code}
-                  className="shrink-0 w-11 h-11 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-[10px] flex items-center justify-center hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+                  className="shrink-0 w-11 h-11 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-[10px] flex items-center justify-center hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
                   title="Copiar codigo"
                 >
                   <i className="fa-solid fa-copy" />
@@ -110,9 +110,9 @@ export default async function CouponsPage() {
       </div>
 
       {/* How to use */}
-      <div className="bg-[#fce4ec] border border-[#E6007E]/30 rounded-[14px] p-5">
+      <div className="bg-[#fce4ec] border border-[#4A7CF7]/30 rounded-[14px] p-5">
         <h3 className="text-sm font-semibold text-[#0F172A] mb-2">
-          <i className="fa-solid fa-circle-question mr-1.5 text-[#E6007E]" />
+          <i className="fa-solid fa-circle-question mr-1.5 text-[#4A7CF7]" />
           Como usar un cupon
         </h3>
         <ol className="text-sm text-[#64748B] space-y-1.5 list-decimal list-inside">

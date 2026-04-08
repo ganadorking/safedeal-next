@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
           <Link href="/" className="inline-block">
             <span className="text-3xl font-bold">
               <span className="text-[#0F172A]">Safe</span>
-              <span className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] bg-clip-text text-transparent">
                 Deal
               </span>
             </span>
@@ -81,7 +81,7 @@ export default function ForgotPasswordPage() {
               </p>
               <Link
                 href="/login"
-                className="inline-block px-6 py-2.5 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all text-sm"
+                className="inline-block px-6 py-2.5 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all text-sm"
               >
                 Volver al inicio de sesion
               </Link>
@@ -113,14 +113,14 @@ export default function ForgotPasswordPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tu@email.com"
                     required
-                    className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 focus:outline-none transition-colors"
+                    className="w-full bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 focus:outline-none transition-colors"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-11 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#E6007E] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full h-11 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A7CF7] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <span className="flex items-center justify-center gap-2">
@@ -154,7 +154,7 @@ export default function ForgotPasswordPage() {
               <div className="mt-6 text-center">
                 <Link
                   href="/login"
-                  className="text-sm text-[#E6007E] hover:text-[#E6007E] transition-colors"
+                  className="text-sm text-[#4A7CF7] hover:text-[#4A7CF7] transition-colors"
                 >
                   Volver al inicio de sesion
                 </Link>

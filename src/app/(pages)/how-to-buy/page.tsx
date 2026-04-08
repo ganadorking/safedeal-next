@@ -84,7 +84,7 @@ export default function HowToBuyPage() {
             key={step.number}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-8 flex items-start gap-6"
           >
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold text-lg">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold text-lg">
               {step.number}
             </div>
             <div>

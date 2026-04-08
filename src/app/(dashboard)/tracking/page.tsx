@@ -68,7 +68,7 @@ export default async function TrackingPage() {
                       {new Date(order.createdAt).toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" })}
                     </p>
                   </div>
-                  <span className="text-base font-bold text-[#E6007E]">${Number(order.total).toFixed(2)}</span>
+                  <span className="text-base font-bold text-[#4A7CF7]">${Number(order.total).toFixed(2)}</span>
                 </div>
 
                 {/* Timeline */}
@@ -89,7 +89,7 @@ export default async function TrackingPage() {
                         <div
                           className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all ${
                             isCurrent
-                              ? "bg-gradient-to-br from-[#E6007E] to-[#C5006B] text-white shadow-lg shadow-[#E6007E]/30"
+                              ? "bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] text-white shadow-lg shadow-[#4A7CF7]/30"
                               : isComplete
                               ? "bg-emerald-100 text-emerald-600"
                               : "bg-[#F8FAFC] text-[#94A3B8]"
@@ -99,7 +99,7 @@ export default async function TrackingPage() {
                         </div>
                         <span
                           className={`text-[11px] font-medium text-center ${
-                            isCurrent ? "text-[#E6007E]" : isComplete ? "text-emerald-600" : "text-[#94A3B8]"
+                            isCurrent ? "text-[#4A7CF7]" : isComplete ? "text-emerald-600" : "text-[#94A3B8]"
                           }`}
                         >
                           {step.label}
@@ -117,7 +117,7 @@ export default async function TrackingPage() {
                         {item.product.mainImage ? (
                           <img src={item.product.mainImage} alt="" className="w-full h-full object-cover rounded-lg" />
                         ) : (
-                          <i className="fa-solid fa-box text-[#E6007E] text-xs" />
+                          <i className="fa-solid fa-box text-[#4A7CF7] text-xs" />
                         )}
                       </div>
                       <p className="text-sm text-[#64748B] truncate flex-1">{item.product.title}</p>

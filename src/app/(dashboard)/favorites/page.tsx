@@ -39,13 +39,13 @@ export default async function FavoritesPage() {
       {favorites.length === 0 ? (
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-12 text-center">
           <div className="w-16 h-16 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-4">
-            <i className="fa-solid fa-heart text-2xl text-[#E6007E]" />
+            <i className="fa-solid fa-heart text-2xl text-[#4A7CF7]" />
           </div>
           <h3 className="text-lg font-semibold text-[#0F172A] mb-1">Sin favoritos aun</h3>
           <p className="text-sm text-[#94A3B8] mb-4">Guarda los productos que te interesan para verlos despues</p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
           >
             <i className="fa-solid fa-compass" /> Explorar Productos
           </Link>
@@ -80,7 +80,7 @@ export default async function FavoritesPage() {
                     </div>
                   )}
                   <div className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                    <i className="fa-solid fa-heart text-[#E6007E] text-sm" />
+                    <i className="fa-solid fa-heart text-[#4A7CF7] text-sm" />
                   </div>
                 </div>
                 <div className="p-3">
@@ -96,7 +96,7 @@ export default async function FavoritesPage() {
                     <span className="text-[11px] text-[#94A3B8] ml-1">({product.reviewCount})</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-base font-bold text-[#E6007E]">${Number(product.price).toFixed(2)}</span>
+                    <span className="text-base font-bold text-[#4A7CF7]">${Number(product.price).toFixed(2)}</span>
                     {product.originalPrice && (
                       <span className="text-xs text-[#94A3B8] line-through">${Number(product.originalPrice).toFixed(2)}</span>
                     )}

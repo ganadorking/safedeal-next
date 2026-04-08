@@ -94,7 +94,7 @@ const comparison = [
 export default function SafeDealPlusPage() {
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#E6007E] via-[#E6007E] to-[#C5006B] rounded-[14px] p-10 text-center text-white mb-12">
+      <div className="bg-gradient-to-r from-[#4A7CF7] via-[#4A7CF7] to-[#3A65D4] rounded-[14px] p-10 text-center text-white mb-12">
         <div className="inline-block px-4 py-1 rounded-full bg-white/20 text-sm font-medium mb-4">
           SafeDeal Plus
         </div>
@@ -116,7 +116,7 @@ export default function SafeDealPlusPage() {
             key={benefit.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#E6007E] mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
               {benefit.icon}
             </div>
             <h3 className="font-semibold text-[#0F172A] mb-2">
@@ -143,13 +143,13 @@ export default function SafeDealPlusPage() {
           <p className="text-[#64748B] text-sm mb-6">USD / mes</p>
           <a
             href="/checkout?plan=plus-monthly"
-            className="block w-full py-3 rounded-xl border-2 border-[#E6007E] text-[#E6007E] font-semibold hover:bg-[#fce4ec] transition-colors"
+            className="block w-full py-3 rounded-xl border-2 border-[#4A7CF7] text-[#4A7CF7] font-semibold hover:bg-[#fce4ec] transition-colors"
           >
             Empezar Ahora
           </a>
         </div>
-        <div className="bg-white border-2 border-[#E6007E] rounded-[14px] p-8 text-center relative">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white text-xs font-bold">
+        <div className="bg-white border-2 border-[#4A7CF7] rounded-[14px] p-8 text-center relative">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white text-xs font-bold">
             AHORRA 25%
           </div>
           <h3 className="text-lg font-semibold text-[#0F172A] mb-2">
@@ -159,12 +159,12 @@ export default function SafeDealPlusPage() {
             $89.99
           </div>
           <p className="text-[#64748B] text-sm mb-1">USD / año</p>
-          <p className="text-[#E6007E] text-sm font-medium mb-6">
+          <p className="text-[#4A7CF7] text-sm font-medium mb-6">
             Equivale a $7.50/mes
           </p>
           <a
             href="/checkout?plan=plus-annual"
-            className="block w-full py-3 rounded-xl bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold hover:opacity-90 transition-opacity"
+            className="block w-full py-3 rounded-xl bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold hover:opacity-90 transition-opacity"
           >
             Empezar Ahora
           </a>
@@ -185,7 +185,7 @@ export default function SafeDealPlusPage() {
                 <th className="text-center px-6 py-3 font-semibold text-[#0F172A]">
                   Gratis
                 </th>
-                <th className="text-center px-6 py-3 font-semibold text-[#E6007E]">
+                <th className="text-center px-6 py-3 font-semibold text-[#4A7CF7]">
                   Plus
                 </th>
               </tr>
@@ -197,7 +197,7 @@ export default function SafeDealPlusPage() {
                   <td className="px-6 py-3 text-center text-[#64748B]">
                     {row.free}
                   </td>
-                  <td className="px-6 py-3 text-center font-medium text-[#E6007E]">
+                  <td className="px-6 py-3 text-center font-medium text-[#4A7CF7]">
                     {row.plus}
                   </td>
                 </tr>
@@ -207,7 +207,7 @@ export default function SafeDealPlusPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] rounded-[14px] p-10 text-center text-white">
+      <div className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] rounded-[14px] p-10 text-center text-white">
         <h2 className="text-2xl font-bold mb-3">
           Únete a SafeDeal Plus Hoy
         </h2>
@@ -217,7 +217,7 @@ export default function SafeDealPlusPage() {
         </p>
         <a
           href="/checkout?plan=plus-trial"
-          className="inline-block bg-white text-[#E6007E] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
+          className="inline-block bg-white text-[#4A7CF7] font-semibold px-8 py-3 rounded-xl hover:bg-white/90 transition-colors"
         >
           Prueba Gratis 14 Días
         </a>

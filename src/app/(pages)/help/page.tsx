@@ -142,7 +142,7 @@ export default function HelpPage() {
         </p>
         <a
           href="/contact"
-          className="inline-block bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+          className="inline-block bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
         >
           Contactar Soporte
         </a>

@@ -92,12 +92,12 @@ export default function KYCPage() {
             key={step.number}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-8 flex items-start gap-6"
           >
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold text-lg">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold text-lg">
               {step.number}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-[#E6007E]">{step.icon}</span>
+                <span className="text-[#4A7CF7]">{step.icon}</span>
                 <h3 className="text-lg font-semibold text-[#0F172A]">
                   {step.title}
                 </h3>
@@ -131,7 +131,7 @@ export default function KYCPage() {
       <div className="text-center">
         <a
           href="/dashboard/kyc"
-          className="inline-block bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-10 py-4 rounded-xl hover:opacity-90 transition-opacity text-lg"
+          className="inline-block bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-10 py-4 rounded-xl hover:opacity-90 transition-opacity text-lg"
         >
           Iniciar Verificación
         </a>

@@ -23,7 +23,7 @@ export default async function ProfilePage() {
       {/* Profile Header */}
       <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white text-3xl font-bold shrink-0">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white text-3xl font-bold shrink-0">
             {user.avatarUrl ? (
               <img
                 src={user.avatarUrl}
@@ -48,7 +48,7 @@ export default async function ProfilePage() {
                 </span>
               )}
               {user.isSeller && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#C5006B]">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#3A65D4]">
                   <i className="fa-solid fa-store text-[10px]" /> Vendedor
                 </span>
               )}
@@ -100,10 +100,10 @@ export default async function ProfilePage() {
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-5">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#fce4ec] flex items-center justify-center">
-              <i className="fa-solid fa-wallet text-[#E6007E]" />
+              <i className="fa-solid fa-wallet text-[#4A7CF7]" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-[#E6007E]">${Number(stats?.balance ?? 0).toFixed(2)}</p>
+              <p className="text-2xl font-bold text-[#4A7CF7]">${Number(stats?.balance ?? 0).toFixed(2)}</p>
               <p className="text-xs text-[#94A3B8]">Balance</p>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default async function ProfilePage() {
                 name="firstName"
                 defaultValue={user.firstName ?? ""}
                 placeholder="Tu nombre"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
               />
             </div>
             <div>
@@ -132,7 +132,7 @@ export default async function ProfilePage() {
                 name="lastName"
                 defaultValue={user.lastName ?? ""}
                 placeholder="Tu apellido"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
               />
             </div>
           </div>
@@ -144,7 +144,7 @@ export default async function ProfilePage() {
                 name="phone"
                 defaultValue={user.phone ?? ""}
                 placeholder="+52 123 456 7890"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
               />
             </div>
             <div>
@@ -152,7 +152,7 @@ export default async function ProfilePage() {
               <select
                 name="countryCode"
                 defaultValue={user.countryCode}
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#E6007E] focus:ring-2 focus:ring-[#E6007E]/10 outline-none transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] h-11 px-4 text-sm text-[#0F172A] focus:border-[#4A7CF7] focus:ring-2 focus:ring-[#4A7CF7]/10 outline-none transition-colors"
               >
                 <option value="MX">Mexico</option>
                 <option value="CO">Colombia</option>
@@ -169,7 +169,7 @@ export default async function ProfilePage() {
           <div className="pt-2">
             <button
               type="submit"
-              className="bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-[#E6007E] transition-all text-sm"
+              className="bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-[#4A7CF7] transition-all text-sm"
             >
               Guardar Cambios
             </button>

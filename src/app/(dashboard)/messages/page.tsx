@@ -71,7 +71,7 @@ export default async function MessagesPage() {
         <h1 className="text-2xl font-bold text-[#0F172A]">Mensajes</h1>
         <Link
           href="/messages/new"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
         >
           <i className="fa-solid fa-pen-to-square" /> Nuevo Mensaje
         </Link>
@@ -86,7 +86,7 @@ export default async function MessagesPage() {
           <p className="text-sm text-[#94A3B8] mb-4">Inicia una conversacion con otro usuario</p>
           <Link
             href="/messages/new"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
           >
             <i className="fa-solid fa-pen-to-square" /> Nuevo Mensaje
           </Link>
@@ -100,7 +100,7 @@ export default async function MessagesPage() {
               className="flex items-center gap-4 px-5 py-4 hover:bg-[#F8FAFC] transition-colors"
             >
               <div className="relative shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E6007E] to-[#C5006B] flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold">
                   {conv.avatarUrl ? (
                     <img src={conv.avatarUrl} alt="" className="w-full h-full rounded-full object-cover" />
                   ) : (
@@ -108,7 +108,7 @@ export default async function MessagesPage() {
                   )}
                 </div>
                 {conv.unread > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#E6007E] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#4A7CF7] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                     {conv.unread > 9 ? "9+" : conv.unread}
                   </span>
                 )}
@@ -121,7 +121,7 @@ export default async function MessagesPage() {
                   <span className="text-xs text-[#94A3B8] shrink-0 ml-3">{timeAgo(conv.lastDate)}</span>
                 </div>
                 {conv.subject && (
-                  <p className="text-xs font-medium text-[#E6007E] mb-0.5 truncate">{conv.subject}</p>
+                  <p className="text-xs font-medium text-[#4A7CF7] mb-0.5 truncate">{conv.subject}</p>
                 )}
                 <p className={`text-sm truncate ${conv.unread > 0 ? "text-[#0F172A] font-medium" : "text-[#94A3B8]"}`}>
                   {truncate(conv.lastMessage, 80)}

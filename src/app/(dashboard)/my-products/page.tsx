@@ -33,7 +33,7 @@ export default async function MyProductsPage() {
         <h1 className="text-2xl font-bold text-[#0F172A]">Mis Productos</h1>
         <Link
           href="/sell"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
         >
           <i className="fa-solid fa-plus" /> Nuevo Producto
         </Link>
@@ -48,7 +48,7 @@ export default async function MyProductsPage() {
           <p className="text-sm text-[#94A3B8] mb-4">Publica tu primer producto y comienza a vender</p>
           <Link
             href="/sell"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6007E] to-[#C5006B] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#E6007E] transition-all"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A7CF7] to-[#3A65D4] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:shadow-lg hover:shadow-[#4A7CF7] transition-all"
           >
             <i className="fa-solid fa-plus" /> Publicar Producto
           </Link>
@@ -66,7 +66,7 @@ export default async function MyProductsPage() {
                   {product.mainImage ? (
                     <img src={product.mainImage} alt="" className="w-full h-full object-cover rounded-xl" />
                   ) : (
-                    <i className="fa-solid fa-box text-[#E6007E] text-lg" />
+                    <i className="fa-solid fa-box text-[#4A7CF7] text-lg" />
                   )}
                 </div>
 
@@ -92,7 +92,7 @@ export default async function MyProductsPage() {
 
                   {/* Stats Row */}
                   <div className="flex items-center gap-4 mt-2 flex-wrap">
-                    <span className="text-base font-bold text-[#E6007E]">${Number(product.price).toFixed(2)}</span>
+                    <span className="text-base font-bold text-[#4A7CF7]">${Number(product.price).toFixed(2)}</span>
                     <span className="inline-flex items-center gap-1 text-xs text-[#64748B]">
                       <i className="fa-solid fa-box-open text-[10px]" /> Stock: {product.stock}
                     </span>
@@ -112,14 +112,14 @@ export default async function MyProductsPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
                     href={`/sell/${product.id}/edit`}
-                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#E6007E] hover:bg-[#fce4ec] transition-colors"
+                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#4A7CF7] hover:bg-[#fce4ec] transition-colors"
                     title="Editar"
                   >
                     <i className="fa-solid fa-pen text-sm" />
                   </Link>
                   <Link
                     href={`/product/${product.slug}`}
-                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] hover:text-[#E6007E] transition-colors"
+                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] hover:text-[#4A7CF7] transition-colors"
                     title="Ver"
                   >
                     <i className="fa-solid fa-arrow-up-right-from-square text-sm" />

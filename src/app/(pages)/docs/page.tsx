@@ -76,27 +76,27 @@ Content-Type: application/json`}
               </thead>
               <tbody className="divide-y divide-[#E2E8F0]">
                 <tr>
-                  <td className="px-4 py-2 font-mono text-[#E6007E] text-xs">page</td>
+                  <td className="px-4 py-2 font-mono text-[#4A7CF7] text-xs">page</td>
                   <td className="px-4 py-2 text-[#64748B]">number</td>
                   <td className="px-4 py-2 text-[#64748B]">Página (default: 1)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-mono text-[#E6007E] text-xs">limit</td>
+                  <td className="px-4 py-2 font-mono text-[#4A7CF7] text-xs">limit</td>
                   <td className="px-4 py-2 text-[#64748B]">number</td>
                   <td className="px-4 py-2 text-[#64748B]">Resultados por página (default: 20, max: 100)</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-mono text-[#E6007E] text-xs">category</td>
+                  <td className="px-4 py-2 font-mono text-[#4A7CF7] text-xs">category</td>
                   <td className="px-4 py-2 text-[#64748B]">string</td>
                   <td className="px-4 py-2 text-[#64748B]">Filtrar por categoría</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-mono text-[#E6007E] text-xs">min_price</td>
+                  <td className="px-4 py-2 font-mono text-[#4A7CF7] text-xs">min_price</td>
                   <td className="px-4 py-2 text-[#64748B]">number</td>
                   <td className="px-4 py-2 text-[#64748B]">Precio mínimo en centavos</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-mono text-[#E6007E] text-xs">max_price</td>
+                  <td className="px-4 py-2 font-mono text-[#4A7CF7] text-xs">max_price</td>
                   <td className="px-4 py-2 text-[#64748B]">number</td>
                   <td className="px-4 py-2 text-[#64748B]">Precio máximo en centavos</td>
                 </tr>
@@ -287,7 +287,7 @@ Content-Type: application/json
             <p>
               Cuando se excede el límite, la API responde con un código 429
               (Too Many Requests). El header{" "}
-              <code className="bg-[#F8FAFC] px-2 py-0.5 rounded text-[#E6007E] text-xs">
+              <code className="bg-[#F8FAFC] px-2 py-0.5 rounded text-[#4A7CF7] text-xs">
                 X-RateLimit-Reset
               </code>{" "}
               indica cuándo puedes volver a hacer solicitudes.

@@ -84,7 +84,7 @@ export default function PrivacyPage() {
             </p>
             <p>
               Para más información sobre las cookies que utilizamos, consulte nuestra{" "}
-              <a href="/cookies" className="text-[#E6007E] hover:text-[#E6007E] underline">
+              <a href="/cookies" className="text-[#4A7CF7] hover:text-[#4A7CF7] underline">
                 Política de Cookies
               </a>.
             </p>
