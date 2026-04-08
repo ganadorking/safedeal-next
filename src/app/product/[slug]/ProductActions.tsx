@@ -125,7 +125,7 @@ export default function ProductActions({ productId, stock }: ProductActionsProps
         disabled={togglingFav || authLoading}
         className={`w-full h-11 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 border-[1.5px] ${
           isFavorited
-            ? "bg-[#fce4ec] border-[#4A7CF7]/40 text-[#4A7CF7]"
+            ? "bg-[#EBF0FF] border-[#4A7CF7]/40 text-[#4A7CF7]"
             : "bg-white border-[#E2E8F0] text-[#64748B] hover:border-[#4A7CF7]/40 hover:text-[#4A7CF7]"
         }`}
       >

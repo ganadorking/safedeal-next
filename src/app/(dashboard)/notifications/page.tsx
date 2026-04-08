@@ -8,13 +8,13 @@ function notifIcon(type: string) {
   const map: Record<string, { icon: string; bg: string; color: string }> = {
     order: { icon: "fa-shopping-bag", bg: "bg-blue-50", color: "text-blue-500" },
     sale: { icon: "fa-chart-line", bg: "bg-emerald-50", color: "text-emerald-500" },
-    payment: { icon: "fa-credit-card", bg: "bg-[#fce4ec]", color: "text-[#4A7CF7]" },
+    payment: { icon: "fa-credit-card", bg: "bg-[#EBF0FF]", color: "text-[#4A7CF7]" },
     delivery: { icon: "fa-truck", bg: "bg-cyan-50", color: "text-cyan-500" },
     review: { icon: "fa-star", bg: "bg-amber-50", color: "text-amber-500" },
     dispute: { icon: "fa-gavel", bg: "bg-red-50", color: "text-red-500" },
     message: { icon: "fa-envelope", bg: "bg-sky-50", color: "text-sky-500" },
     system: { icon: "fa-bell", bg: "bg-gray-50", color: "text-gray-500" },
-    promotion: { icon: "fa-tag", bg: "bg-[#fce4ec]", color: "text-[#4A7CF7]" },
+    promotion: { icon: "fa-tag", bg: "bg-[#EBF0FF]", color: "text-[#4A7CF7]" },
     wallet: { icon: "fa-wallet", bg: "bg-indigo-50", color: "text-indigo-500" },
   };
   return map[type] ?? map.system;
@@ -71,7 +71,7 @@ export default async function NotificationsPage() {
               <Wrapper
                 key={notif.id}
                 {...(wrapperProps as any)}
-                className={`flex items-start gap-4 px-5 py-4 transition-colors hover:bg-[#F8FAFC] ${!notif.isRead ? "bg-[#fce4ec]/30" : ""}`}
+                className={`flex items-start gap-4 px-5 py-4 transition-colors hover:bg-[#F8FAFC] ${!notif.isRead ? "bg-[#EBF0FF]/30" : ""}`}
               >
                 <div className={`w-10 h-10 rounded-xl ${icon.bg} flex items-center justify-center shrink-0 mt-0.5`}>
                   <i className={`fa-solid ${icon.icon} text-sm ${icon.color}`} />

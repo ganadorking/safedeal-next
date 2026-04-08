@@ -7,7 +7,7 @@
 | Primary | `#4A7CF7` | Main brand, buttons, prices, highlights, active states |
 | Primary Hover | `#3A65D4` | Hover state for primary |
 | Secondary/Orange | `#E07840` | Accent, special elements, sunset orange |
-| Background | `#EDEAE5` | Main page background (gris humo) |
+| Background | `#FFFFFF` | Main page background (white) |
 | Card BG | `#FFFFFF` | Card surfaces |
 | Input BG | `#F5F3F0` | Input backgrounds, secondary surfaces |
 | Text Primary | `#0A0A0A` | Headings, body text (coal black) |
@@ -31,8 +31,8 @@
 
 ## Key Principles
 
-- Background: Gris humo (#EDEAE5) — NOT white
-- Cards: White (#FFFFFF) on gris humo background
+- Background: White (#FFFFFF)
+- Cards: White (#FFFFFF) with subtle shadows/borders
 - Primary: Deep blue (#4A7CF7) — NOT pink
 - Text: Coal black (#0A0A0A)
 - Navbar/Footer: Coal black (#0A0A0A)

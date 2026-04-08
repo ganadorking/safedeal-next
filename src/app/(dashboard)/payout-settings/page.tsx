@@ -113,7 +113,7 @@ export default function PayoutSettingsPage() {
               onClick={() => setActiveTab(tab.key)}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-medium transition-colors ${
                 activeTab === tab.key
-                  ? "text-[#4A7CF7] border-b-2 border-[#4A7CF7] bg-[#fce4ec]/50"
+                  ? "text-[#4A7CF7] border-b-2 border-[#4A7CF7] bg-[#EBF0FF]/50"
                   : "text-[#94A3B8] hover:text-[#64748B] hover:bg-[#F8FAFC]"
               }`}
             >

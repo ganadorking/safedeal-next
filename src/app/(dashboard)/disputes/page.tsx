@@ -7,7 +7,7 @@ import { timeAgo } from "@/lib/utils";
 function statusBadge(status: string) {
   const map: Record<string, { bg: string; text: string; label: string }> = {
     open: { bg: "bg-amber-50", text: "text-amber-700", label: "Abierta" },
-    in_review: { bg: "bg-[#fce4ec]", text: "text-pink-700", label: "En revision" },
+    in_review: { bg: "bg-[#EBF0FF]", text: "text-[#3A65D4]", label: "En revision" },
     resolved: { bg: "bg-emerald-50", text: "text-emerald-700", label: "Resuelta" },
     closed: { bg: "bg-gray-50", text: "text-gray-700", label: "Cerrada" },
     escalated: { bg: "bg-red-50", text: "text-red-700", label: "Escalada" },
@@ -83,7 +83,7 @@ export default async function DisputesPage() {
 
                 <div className="ml-[52px]">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#3A65D4]">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#EBF0FF] text-[#3A65D4]">
                       <i className="fa-solid fa-tag text-[10px]" /> {dispute.reason}
                     </span>
                   </div>

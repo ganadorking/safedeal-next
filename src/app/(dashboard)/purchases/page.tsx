@@ -7,12 +7,12 @@ function statusBadge(status: string) {
   const map: Record<string, { bg: string; text: string; label: string }> = {
     pending: { bg: "bg-amber-50", text: "text-amber-700", label: "Pendiente" },
     paid: { bg: "bg-blue-50", text: "text-blue-700", label: "Pagado" },
-    processing: { bg: "bg-[#fce4ec]", text: "text-[#3A65D4]", label: "Procesando" },
+    processing: { bg: "bg-[#EBF0FF]", text: "text-[#3A65D4]", label: "Procesando" },
     delivered: { bg: "bg-cyan-50", text: "text-cyan-700", label: "Entregado" },
     completed: { bg: "bg-emerald-50", text: "text-emerald-700", label: "Completado" },
     cancelled: { bg: "bg-red-50", text: "text-red-700", label: "Cancelado" },
     refunded: { bg: "bg-gray-50", text: "text-gray-700", label: "Reembolsado" },
-    in_review: { bg: "bg-[#fce4ec]", text: "text-pink-700", label: "En revision" },
+    in_review: { bg: "bg-[#EBF0FF]", text: "text-[#3A65D4]", label: "En revision" },
   };
   const s = map[status] ?? { bg: "bg-gray-50", text: "text-gray-700", label: status };
   return (
@@ -50,7 +50,7 @@ export default async function PurchasesPage() {
 
       {orders.length === 0 ? (
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-12 text-center">
-          <div className="w-16 h-16 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-[#EBF0FF] flex items-center justify-center mx-auto mb-4">
             <i className="fa-solid fa-shopping-bag text-2xl text-[#4A7CF7]" />
           </div>
           <h3 className="text-lg font-semibold text-[#0F172A] mb-1">Sin compras aun</h3>

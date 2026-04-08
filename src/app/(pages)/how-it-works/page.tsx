@@ -125,7 +125,7 @@ export default function HowItWorksPage() {
             key={feature.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#EBF0FF] flex items-center justify-center text-[#4A7CF7] mb-4">
               {feature.icon}
             </div>
             <h3 className="text-[#0F172A] font-semibold mb-2">

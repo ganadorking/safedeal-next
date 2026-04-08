@@ -383,7 +383,7 @@ export default function CheckoutPage() {
                 }}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   step === num
-                    ? "bg-[#fce4ec] text-[#4A7CF7]"
+                    ? "bg-[#EBF0FF] text-[#4A7CF7]"
                     : step > num
                     ? "bg-green-50 text-green-600 cursor-pointer"
                     : "bg-[#F8FAFC] text-[#94A3B8]"
@@ -519,7 +519,7 @@ export default function CheckoutPage() {
                           onClick={() => setPaymentMethod(method.id)}
                           className={`w-full flex items-center gap-4 p-4 rounded-[10px] border-[1.5px] transition-all text-left ${
                             paymentMethod === method.id
-                              ? "border-[#4A7CF7] bg-[#fce4ec]/50 ring-2 ring-[#4A7CF7]/10"
+                              ? "border-[#4A7CF7] bg-[#EBF0FF]/50 ring-2 ring-[#4A7CF7]/10"
                               : "border-[#E2E8F0] hover:border-[#4A7CF7]"
                           }`}
                         >
@@ -660,7 +660,7 @@ export default function CheckoutPage() {
                         setPaymentMethod("card");
                         setStep(2);
                       }}
-                      className="mt-6 px-6 py-3 border-[1.5px] border-[#4A7CF7] text-[#4A7CF7] rounded-xl font-semibold hover:bg-[#fce4ec] transition-all"
+                      className="mt-6 px-6 py-3 border-[1.5px] border-[#4A7CF7] text-[#4A7CF7] rounded-xl font-semibold hover:bg-[#EBF0FF] transition-all"
                     >
                       Elegir otro metodo
                     </button>

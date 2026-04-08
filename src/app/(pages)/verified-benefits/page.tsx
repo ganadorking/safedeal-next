@@ -97,7 +97,7 @@ export default function VerifiedBenefitsPage() {
             key={benefit.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-12 h-12 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
+            <div className="w-12 h-12 rounded-lg bg-[#EBF0FF] flex items-center justify-center text-[#4A7CF7] mb-4">
               {benefit.icon}
             </div>
             <h3 className="font-semibold text-[#0F172A] mb-2 text-lg">

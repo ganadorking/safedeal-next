@@ -116,7 +116,7 @@ export default function SafeDealPlusPage() {
             key={benefit.title}
             className="bg-white border border-[#E2E8F0] rounded-[14px] p-6"
           >
-            <div className="w-10 h-10 rounded-lg bg-[#fce4ec] flex items-center justify-center text-[#4A7CF7] mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#EBF0FF] flex items-center justify-center text-[#4A7CF7] mb-4">
               {benefit.icon}
             </div>
             <h3 className="font-semibold text-[#0F172A] mb-2">
@@ -143,7 +143,7 @@ export default function SafeDealPlusPage() {
           <p className="text-[#64748B] text-sm mb-6">USD / mes</p>
           <a
             href="/checkout?plan=plus-monthly"
-            className="block w-full py-3 rounded-xl border-2 border-[#4A7CF7] text-[#4A7CF7] font-semibold hover:bg-[#fce4ec] transition-colors"
+            className="block w-full py-3 rounded-xl border-2 border-[#4A7CF7] text-[#4A7CF7] font-semibold hover:bg-[#EBF0FF] transition-colors"
           >
             Empezar Ahora
           </a>

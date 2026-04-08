@@ -69,8 +69,8 @@ export default async function EarningsPage() {
       </div>
 
       {/* Commission Info */}
-      <div className="bg-[#fce4ec] border border-[#4A7CF7]/30 rounded-[14px] p-5 flex items-start gap-4">
-        <div className="w-10 h-10 rounded-xl bg-[#fce4ec] flex items-center justify-center shrink-0">
+      <div className="bg-[#EBF0FF] border border-[#4A7CF7]/30 rounded-[14px] p-5 flex items-start gap-4">
+        <div className="w-10 h-10 rounded-xl bg-[#EBF0FF] flex items-center justify-center shrink-0">
           <i className="fa-solid fa-circle-info text-[#4A7CF7]" />
         </div>
         <div>

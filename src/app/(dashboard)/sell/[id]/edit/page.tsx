@@ -165,7 +165,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <button onClick={() => router.back()} className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] transition-colors">
+        <button onClick={() => router.back()} className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#EBF0FF] transition-colors">
           <i className="fa-solid fa-arrow-left text-sm" />
         </button>
         <h1 className="text-2xl font-bold text-[#0F172A]">Editar Producto</h1>

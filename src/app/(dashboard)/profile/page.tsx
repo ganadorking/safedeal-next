@@ -48,7 +48,7 @@ export default async function ProfilePage() {
                 </span>
               )}
               {user.isSeller && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#fce4ec] text-[#3A65D4]">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#EBF0FF] text-[#3A65D4]">
                   <i className="fa-solid fa-store text-[10px]" /> Vendedor
                 </span>
               )}
@@ -99,7 +99,7 @@ export default async function ProfilePage() {
         </div>
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#fce4ec] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-[#EBF0FF] flex items-center justify-center">
               <i className="fa-solid fa-wallet text-[#4A7CF7]" />
             </div>
             <div>

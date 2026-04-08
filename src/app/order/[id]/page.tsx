@@ -36,7 +36,7 @@ const STATUS_CONFIG: Record<
   delivered: {
     label: "Entregado",
     color: "text-[#3A65D4]",
-    bg: "bg-[#fce4ec]",
+    bg: "bg-[#EBF0FF]",
     border: "border-[#4A7CF7]/30",
   },
   completed: {

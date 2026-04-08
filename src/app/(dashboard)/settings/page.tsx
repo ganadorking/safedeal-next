@@ -256,7 +256,7 @@ export default function SettingsPage() {
       {/* 2FA */}
       <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#fce4ec] flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF0FF] flex items-center justify-center">
             <i className="fa-solid fa-shield-halved text-[#4A7CF7]" />
           </div>
           <div>

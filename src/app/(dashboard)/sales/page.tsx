@@ -11,7 +11,7 @@ function statusBadge(status: string) {
     completed: { bg: "bg-emerald-50", text: "text-emerald-700", label: "Completado" },
     cancelled: { bg: "bg-red-50", text: "text-red-700", label: "Cancelado" },
     disputed: { bg: "bg-red-50", text: "text-red-700", label: "Disputado" },
-    in_review: { bg: "bg-[#fce4ec]", text: "text-pink-700", label: "En revision" },
+    in_review: { bg: "bg-[#EBF0FF]", text: "text-[#3A65D4]", label: "En revision" },
   };
   const s = map[status] ?? { bg: "bg-gray-50", text: "text-gray-700", label: status };
   return (

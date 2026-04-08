@@ -214,9 +214,9 @@ export default function Footer() {
                   ),
                   badge: "PRO",
                   badgeStyle: {
-                    background: "rgba(230,0,126,0.15)",
+                    background: "rgba(74,124,247,0.15)",
                     color: "#4A7CF7",
-                    border: "1px solid rgba(230,0,126,0.2)",
+                    border: "1px solid rgba(74,124,247,0.2)",
                   },
                 },
                 { href: "/become-verified", label: "Verificacion" },

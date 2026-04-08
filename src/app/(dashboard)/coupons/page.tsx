@@ -110,7 +110,7 @@ export default async function CouponsPage() {
       </div>
 
       {/* How to use */}
-      <div className="bg-[#fce4ec] border border-[#4A7CF7]/30 rounded-[14px] p-5">
+      <div className="bg-[#EBF0FF] border border-[#4A7CF7]/30 rounded-[14px] p-5">
         <h3 className="text-sm font-semibold text-[#0F172A] mb-2">
           <i className="fa-solid fa-circle-question mr-1.5 text-[#4A7CF7]" />
           Como usar un cupon

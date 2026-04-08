@@ -16,7 +16,7 @@ export const CATEGORY_META: Record<
   }
 > = {
   1: {
-    gradient: "from-indigo-900 to-purple-800",
+    gradient: "from-indigo-900 to-blue-800",
     icon: "Gamepad2",
     color: "#9b8df8",
     label: "Videojuego",
@@ -26,7 +26,7 @@ export const CATEGORY_META: Record<
     cardGradient: "linear-gradient(135deg, #0f0c29, #302b63)",
   },
   2: {
-    gradient: "from-indigo-950 to-purple-900",
+    gradient: "from-indigo-950 to-blue-900",
     icon: "Gift",
     color: "#c77dff",
     label: "Gift Card",
@@ -46,7 +46,7 @@ export const CATEGORY_META: Record<
     cardGradient: "linear-gradient(135deg, #0a1628, #0d2e4a)",
   },
   4: {
-    gradient: "from-purple-950 to-purple-800",
+    gradient: "from-blue-950 to-blue-800",
     icon: "PlayCircle",
     color: "#d084ff",
     label: "Streaming",

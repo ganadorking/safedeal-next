@@ -20,18 +20,20 @@ npx next build       # Production build
 4. **Stripe**: NEVER show Stripe branding — everything looks like SafeDeal's own payment
 5. **Images**: Always use Cloudinary (upload via `/api/upload`, display via `getProductImageUrl()`)
 6. **Emails**: Use functions from `@/lib/email.ts` (Resend)
-7. **Prices**: Always display in pink (#E6007E)
-8. **Design**: Follow DESIGN_SYSTEM.md — Wildberries style with Manrope font, white background
+7. **Prices**: Always display in blue (#4A7CF7)
+8. **Design**: Follow DESIGN_SYSTEM.md — clean style with Manrope font, white background
 9. **Language**: All UI text in Spanish
 10. **Never commit .env**
 
 ## Design Colors
-- Primary: `#E6007E` (pink/magenta), Secondary: `#FF6B2B` (orange)
-- Blue accent: `#0075FF` (search, trust icons)
+- Primary: `#4A7CF7` (blue), Hover: `#3A65D4`
+- Secondary: `#E07840` (orange accent)
 - Background: `#FFFFFF`, Cards: white, Border: `#E2E8F0`
-- Text: `#0F172A` / `#64748B` / `#94A3B8`
-- Price: `#E6007E` (pink)
-- Navbar: `#212121` (dark gray), Footer: `#1C1C1D`
+- Text: `#0A0A0A` / `#5C5C5C` / `#8A8A8A`
+- Price: `#4A7CF7` (blue)
+- Hearts/Favorites: `#ef4444` (red)
+- Navbar: `#0A0A0A` (black), Footer: `#0A0A0A`
+- Light accent: `#EBF0FF` (light blue backgrounds)
 - Font: Manrope (primary), Inter (secondary)
 
 ## File Patterns

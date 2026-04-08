@@ -112,14 +112,14 @@ export default async function MyProductsPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
                     href={`/sell/${product.id}/edit`}
-                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#4A7CF7] hover:bg-[#fce4ec] transition-colors"
+                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#4A7CF7] hover:bg-[#EBF0FF] transition-colors"
                     title="Editar"
                   >
                     <i className="fa-solid fa-pen text-sm" />
                   </Link>
                   <Link
                     href={`/product/${product.slug}`}
-                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] hover:text-[#4A7CF7] transition-colors"
+                    className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#EBF0FF] hover:text-[#4A7CF7] transition-colors"
                     title="Ver"
                   >
                     <i className="fa-solid fa-arrow-up-right-from-square text-sm" />

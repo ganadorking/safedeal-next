@@ -160,55 +160,54 @@ Tablas principales en Prisma:
 ### Paleta de colores
 ```typescript
 // Fondos
-background: '#fafafe'        // main page bg
-card: '#ffffff'              // card/panel bg  
-input: '#f8f7ff'             // input bg
-hover: '#f5f3ff'             // hover states
+background: '#FFFFFF'        // main page bg
+card: '#FFFFFF'              // card/panel bg  
+input: '#F5F3F0'             // input bg
+lightAccent: '#EBF0FF'       // light blue accent bg
 
 // Texto
-text: '#1a1025'              // primary (headings)
-textSecondary: '#6b5f7d'     // secondary (body)
-textMuted: '#9389a3'         // muted (captions)
+text: '#0A0A0A'              // primary (headings, body)
+textSecondary: '#5C5C5C'     // secondary (body)
+textMuted: '#8A8A8A'         // muted (captions)
 
 // Brand
-primary: '#8b5cf6'           // purple (main accent)
-primaryHover: '#7c3aed'      // purple dark
-secondary: '#ec4899'         // pink (secondary accent)
-accent: '#06b6d4'            // cyan (tertiary)
+primary: '#4A7CF7'           // blue (main accent)
+primaryHover: '#3A65D4'      // blue dark
+secondary: '#E07840'         // orange (accent)
 
 // Funcional
-price: '#f97316'             // orange (precios siempre en naranja)
+price: '#4A7CF7'             // blue (precios siempre en azul)
 success: '#10b981'           // green
-danger: '#ef4444'            // red
+danger: '#ef4444'            // red (also hearts/favorites)
 warning: '#f59e0b'           // amber
+stars: '#FFB400'             // rating stars
 
 // Border
-border: '#e8e4f0'            // subtle purple-tinted gray
+border: '#D6D3CE'            // light border
 ```
 
 ### Navbar
-- Background: `#1a1025` (dark purple)
-- Logo: "Safe" white + "Deal" gradient purple→pink
-- Search: white/10 bg, purple focus ring
+- Background: `#0A0A0A` (coal black)
+- Logo: "Safe" white + "Deal" blue
+- Search: white bg, blue focus ring
 - Icons: gray-300, hover white
 
 ### Cards
-- White bg, border `#e8e4f0`, rounded-[14px]
-- Hover: shadow-lg shadow-purple-500/10, border-purple-300
+- White bg, border `#E2E8F0`, rounded-[12px]
 - Product images: aspect-ratio 3/4
 
 ### Buttons
-- Primary: `bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl`
-- Outline: white bg, purple border
+- Primary: `bg-[#4A7CF7] text-white rounded-xl` hover `bg-[#3A65D4]`
+- Outline: white bg, blue border
 - CSS class: `.btn-primary` (see globals.css)
 
 ### Inputs
-- `bg-[#f8f7ff] border-[#e8e4f0] rounded-[10px] h-11`
-- Focus: `border-purple-500 ring-2 ring-purple-500/10`
+- `bg-[#F8FAFC] border-[#E2E8F0] rounded-[10px] h-11`
+- Focus: `border-[#4A7CF7] ring-2 ring-[#4A7CF7]/10`
 - CSS class: `.input-field`
 
 ### Footer
-- Dark bg `#1a1025`
+- Dark bg `#0A0A0A` (coal black)
 - Trust bar (escrow, entrega, garantía, soporte)
 - Payment methods (Visa, Mastercard, PayPal, Bitcoin, Ethereum, USDT)
 
@@ -272,7 +271,7 @@ Templates disponibles en `src/lib/email.ts`:
 - `sendDisputeOpened` — Disputa abierta
 - `sendPasswordReset` — Link de reset de contraseña
 
-Todos con HTML inline styled, branding SafeDeal (gradient purple→pink header).
+Todos con HTML inline styled, branding SafeDeal (blue #4A7CF7 header).
 
 ---
 

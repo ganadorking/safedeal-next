@@ -154,7 +154,7 @@ export default async function SearchPage({
                 padding: "7px 10px", fontSize: 13, borderRadius: 8,
                 color: !categorySlug ? "#4A7CF7" : "#64748B",
                 fontWeight: !categorySlug ? 600 : 400,
-                background: !categorySlug ? "rgba(230,0,126,0.06)" : "transparent",
+                background: !categorySlug ? "rgba(74,124,247,0.06)" : "transparent",
               }}>
                 Todas
               </Link>
@@ -163,7 +163,7 @@ export default async function SearchPage({
                   padding: "7px 10px", fontSize: 13, borderRadius: 8,
                   color: categorySlug === cat.slug ? "#4A7CF7" : "#64748B",
                   fontWeight: categorySlug === cat.slug ? 600 : 400,
-                  background: categorySlug === cat.slug ? "rgba(230,0,126,0.06)" : "transparent",
+                  background: categorySlug === cat.slug ? "rgba(74,124,247,0.06)" : "transparent",
                   display: "flex", justifyContent: "space-between",
                 }}>
                   <span>{cat.name}</span>
@@ -201,19 +201,19 @@ export default async function SearchPage({
               <Link href={buildUrl({ delivery: "" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8,
                 color: !delivery ? "#4A7CF7" : "#64748B", fontWeight: !delivery ? 600 : 400,
-                background: !delivery ? "rgba(230,0,126,0.06)" : "transparent",
+                background: !delivery ? "rgba(74,124,247,0.06)" : "transparent",
               }}>Todos</Link>
               <Link href={buildUrl({ delivery: "instant" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8, display: "flex", alignItems: "center", gap: 6,
                 color: delivery === "instant" ? "#4A7CF7" : "#64748B", fontWeight: delivery === "instant" ? 600 : 400,
-                background: delivery === "instant" ? "rgba(230,0,126,0.06)" : "transparent",
+                background: delivery === "instant" ? "rgba(74,124,247,0.06)" : "transparent",
               }}>
                 <i className="fas fa-bolt" style={{ fontSize: 11 }} /> Instantanea
               </Link>
               <Link href={buildUrl({ delivery: "manual" })} style={{
                 padding: "7px 10px", fontSize: 13, borderRadius: 8, display: "flex", alignItems: "center", gap: 6,
                 color: delivery === "manual" ? "#4A7CF7" : "#64748B", fontWeight: delivery === "manual" ? 600 : 400,
-                background: delivery === "manual" ? "rgba(230,0,126,0.06)" : "transparent",
+                background: delivery === "manual" ? "rgba(74,124,247,0.06)" : "transparent",
               }}>
                 <i className="fas fa-hand-paper" style={{ fontSize: 11 }} /> Manual
               </Link>
@@ -231,12 +231,12 @@ export default async function SearchPage({
             {/* Active filter chips */}
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {categorySlug && (
-                <Link href={buildUrl({ category: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
+                <Link href={buildUrl({ category: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(74,124,247,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
                   {categories.find((c) => c.slug === categorySlug)?.name} ×
                 </Link>
               )}
               {(priceMin !== undefined || priceMax !== undefined) && (
-                <Link href={buildUrl({ minPrice: "", maxPrice: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(230,0,126,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
+                <Link href={buildUrl({ minPrice: "", maxPrice: "" })} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", background: "rgba(74,124,247,0.08)", color: "#4A7CF7", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>
                   ${priceMin || 0} - ${priceMax || "∞"} ×
                 </Link>
               )}

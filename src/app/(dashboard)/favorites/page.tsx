@@ -38,7 +38,7 @@ export default async function FavoritesPage() {
 
       {favorites.length === 0 ? (
         <div className="bg-white border border-[#E2E8F0] rounded-[14px] p-12 text-center">
-          <div className="w-16 h-16 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-[#EBF0FF] flex items-center justify-center mx-auto mb-4">
             <i className="fa-solid fa-heart text-2xl text-[#4A7CF7]" />
           </div>
           <h3 className="text-lg font-semibold text-[#0F172A] mb-1">Sin favoritos aun</h3>

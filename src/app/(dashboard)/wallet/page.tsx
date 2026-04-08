@@ -63,7 +63,7 @@ export default async function WalletPage() {
 
         {transactions.length === 0 ? (
           <div className="p-12 text-center">
-            <div className="w-14 h-14 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-3">
+            <div className="w-14 h-14 rounded-full bg-[#EBF0FF] flex items-center justify-center mx-auto mb-3">
               <i className="fa-solid fa-clock-rotate-left text-xl text-[#4A7CF7]" />
             </div>
             <p className="text-sm text-[#94A3B8]">No tienes transacciones aun</p>

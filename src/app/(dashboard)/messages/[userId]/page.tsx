@@ -121,7 +121,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
     <div className="flex flex-col h-[calc(100vh-200px)] min-h-[500px]">
       {/* Chat Header */}
       <div className="bg-white border border-[#E2E8F0] rounded-t-[14px] px-5 py-4 flex items-center gap-4">
-        <button onClick={() => router.push("/messages")} className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#fce4ec] transition-colors shrink-0">
+        <button onClick={() => router.push("/messages")} className="w-9 h-9 rounded-lg bg-[#F8FAFC] flex items-center justify-center text-[#64748B] hover:bg-[#EBF0FF] transition-colors shrink-0">
           <i className="fa-solid fa-arrow-left text-sm" />
         </button>
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4A7CF7] to-[#3A65D4] flex items-center justify-center text-white font-bold shrink-0">
@@ -141,7 +141,7 @@ export default function ChatPage({ params }: { params: Promise<{ userId: string 
       <div className="flex-1 overflow-y-auto bg-[#FFFFFF] border-x border-[#E2E8F0] px-5 py-4 space-y-3">
         {messages.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-14 h-14 rounded-full bg-[#fce4ec] flex items-center justify-center mx-auto mb-3">
+            <div className="w-14 h-14 rounded-full bg-[#EBF0FF] flex items-center justify-center mx-auto mb-3">
               <i className="fa-solid fa-comments text-xl text-[#4A7CF7]" />
             </div>
             <p className="text-sm text-[#94A3B8]">Inicia la conversacion</p>
