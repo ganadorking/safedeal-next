@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface ProductData {
@@ -59,9 +60,29 @@ export default function ProductDetailClient({
   specs,
   seller,
 }: Props) {
+  const router = useRouter();
   const [curImg, setCurImg] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
   const [accOpen, setAccOpen] = useState<number | null>(null);
+  const [addingCart, setAddingCart] = useState(false);
+
+  async function handleAddToCart() {
+    setAddingCart(true);
+    try {
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+      });
+      if (res.ok) {
+        router.push("/cart");
+      }
+    } catch {
+      // silent
+    } finally {
+      setAddingCart(false);
+    }
+  }
 
   const setImg = useCallback(
     (idx: number) => {
@@ -140,7 +161,9 @@ export default function ProductDetailClient({
             >
               Comprar ahora
             </Link>
-            <button className="pp-btn pp-btn-cart">Agregar al carrito</button>
+            <button className="pp-btn pp-btn-cart" onClick={handleAddToCart} disabled={addingCart}>
+              {addingCart ? "Agregando..." : "Agregar al carrito"}
+            </button>
           </div>
         </div>
       </div>
@@ -219,7 +242,9 @@ export default function ProductDetailClient({
               >
                 Comprar ahora
               </Link>
-              <button className="pp-btn pp-btn-cart">Agregar al carrito</button>
+              <button className="pp-btn pp-btn-cart" onClick={handleAddToCart} disabled={addingCart}>
+              {addingCart ? "Agregando..." : "Agregar al carrito"}
+            </button>
             </div>
 
             {/* Seller mini */}

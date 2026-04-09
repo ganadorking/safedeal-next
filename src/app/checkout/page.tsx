@@ -243,6 +243,19 @@ export default function CheckoutPage() {
 
   const fetchCart = useCallback(async () => {
     try {
+      // Check for direct buy via ?product=ID
+      const params = new URLSearchParams(window.location.search);
+      const directProductId = params.get("product");
+
+      if (directProductId) {
+        // Add product to cart first, then load cart
+        await fetch("/api/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: Number(directProductId), quantity: 1 }),
+        });
+      }
+
       const res = await fetch("/api/cart");
       if (res.ok) {
         const data = await res.json();
