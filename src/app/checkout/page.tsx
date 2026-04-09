@@ -270,7 +270,8 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      router.push("/login");
+      const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+      router.push(`/login?redirect=${returnUrl}`);
       return;
     }
     if (user) {

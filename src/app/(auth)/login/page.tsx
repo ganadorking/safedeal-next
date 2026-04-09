@@ -35,7 +35,9 @@ export default function LoginPage() {
         return;
       }
 
-      router.push("/");
+      const params = new URLSearchParams(window.location.search);
+      const redirectTo = params.get("redirect") || "/";
+      router.push(redirectTo);
       router.refresh();
     } catch {
       setError("Error inesperado. Intenta de nuevo.");
