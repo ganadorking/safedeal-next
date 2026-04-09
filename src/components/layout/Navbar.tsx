@@ -888,28 +888,6 @@ export default function Navbar() {
       </nav>
 
 
-      {/* ===== CATEGORIES BAR (Desktop) ===== */}
-      <div className="sd-cat-bar">
-        <div className="sd-cat-bar-inner">
-          {CAT_BAR_ITEMS.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/category/${item.slug}`}
-              className="sd-cat-bar-link"
-            >
-              <i className={`fas ${item.icon}`}></i>
-              {item.label}
-            </Link>
-          ))}
-          {user && profile ? (
-            <Link href="/sell" className="sd-cat-bar-link sell">
-              <i className="fas fa-plus-circle"></i>
-              Vender
-            </Link>
-          ) : null}
-        </div>
-      </div>
-
       {/* ===== CATEGORY SIDEBAR OVERLAY ===== */}
       <div
         className={`sd-cat-overlay${catPanelOpen ? " open" : ""}`}
