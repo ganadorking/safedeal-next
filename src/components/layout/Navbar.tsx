@@ -103,6 +103,14 @@ export default function Navbar() {
   const [hamOpen, setHamOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
+  // New dropdowns
+  const [favOpen, setFavOpen] = useState(false);
+  const [msgOpen, setMsgOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [favItems, setFavItems] = useState<{id:number;title:string;slug:string;price:string;image:string|null}[]>([]);
+  const [cartItems, setCartItems] = useState<{id:number;title:string;slug:string;price:string;image:string|null;quantity:number}[]>([]);
+  const [cartTotal, setCartTotal] = useState(0);
+
   // Auth popup
   const [authPopupOpen, setAuthPopupOpen] = useState(false);
   const [authPanel, setAuthPanel] = useState<"login" | "register">("login");
@@ -125,6 +133,9 @@ export default function Navbar() {
   const userRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const favRef = useRef<HTMLDivElement>(null);
+  const msgRef = useRef<HTMLDivElement>(null);
+  const cartRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   // Fetch profile
@@ -156,6 +167,15 @@ export default function Navbar() {
       if (settingsRef.current && !settingsRef.current.contains(t)) {
         setSettingsOpen(false);
       }
+      if (favRef.current && !favRef.current.contains(t)) {
+        setFavOpen(false);
+      }
+      if (msgRef.current && !msgRef.current.contains(t)) {
+        setMsgOpen(false);
+      }
+      if (cartRef.current && !cartRef.current.contains(t)) {
+        setCartOpen(false);
+      }
     }
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
@@ -173,6 +193,43 @@ export default function Navbar() {
       .catch(() => {
         setSuggActive(false);
       });
+  }, []);
+
+  const fetchFavorites = useCallback(() => {
+    fetch("/api/favorites")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d?.favorites) {
+          setFavItems(d.favorites.slice(0, 5).map((f: { product: { id: number; title: string; slug: string; price: string; mainImage: string | null } }) => ({
+            id: f.product.id,
+            title: f.product.title,
+            slug: f.product.slug,
+            price: f.product.price,
+            image: f.product.mainImage,
+          })));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const fetchCartItems = useCallback(() => {
+    fetch("/api/cart")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d?.cartItems) {
+          const items = d.cartItems.slice(0, 5).map((c: { product: { id: number; title: string; slug: string; price: string; mainImage: string | null }; quantity: number }) => ({
+            id: c.product.id,
+            title: c.product.title,
+            slug: c.product.slug,
+            price: c.product.price,
+            image: c.product.mainImage,
+            quantity: c.quantity,
+          }));
+          setCartItems(items);
+          setCartTotal(d.cartItems.reduce((s: number, c: { product: { price: string }; quantity: number }) => s + Number(c.product.price) * c.quantity, 0));
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const handleSearchInput = (val: string) => {
@@ -223,6 +280,15 @@ export default function Navbar() {
       setCatPanelOpen(true);
       setHamOpen(true);
     }
+  };
+
+  const closeAllDropdowns = () => {
+    setUserMenuOpen(false);
+    setNotifOpen(false);
+    setSettingsOpen(false);
+    setFavOpen(false);
+    setMsgOpen(false);
+    setCartOpen(false);
   };
 
   const closeCatPanel = () => {
@@ -407,9 +473,9 @@ export default function Navbar() {
                   title="Configuracion"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSettingsOpen(!settingsOpen);
-                    setNotifOpen(false);
-                    setUserMenuOpen(false);
+                    const opening = !settingsOpen;
+                    closeAllDropdowns();
+                    setSettingsOpen(opening);
                   }}
                 >
                   <i className="fas fa-globe"></i>
@@ -438,25 +504,95 @@ export default function Navbar() {
 
               {user && profile ? (
                 <>
-                  <Link href="/favorites" className="sd-nav-icon" title="Favoritos">
-                    <i className="far fa-heart"></i>
-                  </Link>
+                  {/* Favorites dropdown */}
+                  <div className={`sd-nav-notif${favOpen ? " open" : ""}`} ref={favRef}>
+                    <button
+                      className="sd-nav-icon"
+                      title="Favoritos"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const opening = !favOpen;
+                        closeAllDropdowns();
+                        setFavOpen(opening);
+                        if (opening) fetchFavorites();
+                      }}
+                    >
+                      <i className="far fa-heart"></i>
+                    </button>
+                    <div className="sd-nav-notif-dd">
+                      <div className="sd-notif-header">
+                        <span className="sd-notif-h">Favoritos</span>
+                        <Link href="/favorites" className="sd-notif-link" onClick={() => setFavOpen(false)}>Ver todos</Link>
+                      </div>
+                      <div className="sd-notif-list">
+                        {favItems.length === 0 ? (
+                          <div className="sd-notif-empty">
+                            <i className="far fa-heart" style={{fontSize:24,marginBottom:6,display:"block",color:"#E5E7EB"}}></i>
+                            <p>Sin favoritos aun</p>
+                          </div>
+                        ) : (
+                          favItems.map(f => (
+                            <Link key={f.id} href={`/product/${f.slug}`} className="sd-search-item" onClick={() => setFavOpen(false)}>
+                              {f.image ? (
+                                <img className="sd-sugg-img" src={f.image} alt="" loading="lazy" />
+                              ) : (
+                                <div className="sd-sugg-img-ph"><i className="fas fa-box"></i></div>
+                              )}
+                              <div className="sd-sugg-body">
+                                <div className="sd-sugg-name">{f.title}</div>
+                                <div style={{fontSize:13,fontWeight:700,color:"#4A7CF7"}}>${Number(f.price).toFixed(2)}</div>
+                              </div>
+                            </Link>
+                          ))
+                        )}
+                      </div>
+                      <div className="sd-notif-footer">
+                        <Link href="/favorites" onClick={() => setFavOpen(false)}>Ver todos los favoritos</Link>
+                      </div>
+                    </div>
+                  </div>
 
-                  {/* Messages */}
-                  <Link href="/messages" className="sd-nav-icon" title="Mensajes">
-                    <i className="far fa-comment-dots"></i>
-                  </Link>
+                  {/* Messages dropdown */}
+                  <div className={`sd-nav-notif${msgOpen ? " open" : ""}`} ref={msgRef}>
+                    <button
+                      className="sd-nav-icon"
+                      title="Mensajes"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const opening = !msgOpen;
+                        closeAllDropdowns();
+                        setMsgOpen(opening);
+                      }}
+                    >
+                      <i className="far fa-comment-dots"></i>
+                    </button>
+                    <div className="sd-nav-notif-dd">
+                      <div className="sd-notif-header">
+                        <span className="sd-notif-h">Mensajes</span>
+                        <Link href="/messages" className="sd-notif-link" onClick={() => setMsgOpen(false)}>Ver todos</Link>
+                      </div>
+                      <div className="sd-notif-list">
+                        <div className="sd-notif-empty">
+                          <i className="far fa-comment-dots" style={{fontSize:24,marginBottom:6,display:"block",color:"#E5E7EB"}}></i>
+                          <p>Sin mensajes nuevos</p>
+                        </div>
+                      </div>
+                      <div className="sd-notif-footer">
+                        <Link href="/messages/new" onClick={() => setMsgOpen(false)}>Nuevo mensaje</Link>
+                      </div>
+                    </div>
+                  </div>
 
-                  {/* Notifications */}
+                  {/* Notifications dropdown */}
                   <div className={`sd-nav-notif${notifOpen ? " open" : ""}`} ref={notifRef}>
                     <button
                       className="sd-nav-icon"
                       title="Notificaciones"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setNotifOpen(!notifOpen);
-                        setUserMenuOpen(false);
-                        setSettingsOpen(false);
+                        const opening = !notifOpen;
+                        closeAllDropdowns();
+                        setNotifOpen(opening);
                       }}
                     >
                       <i className="far fa-bell"></i>
@@ -477,10 +613,58 @@ export default function Navbar() {
                     </div>
                   </div>
 
-                  {/* Cart */}
-                  <Link href="/cart" className="sd-nav-icon" title="Carrito">
-                    <i className="fas fa-shopping-cart"></i>
-                  </Link>
+                  {/* Cart dropdown */}
+                  <div className={`sd-nav-notif${cartOpen ? " open" : ""}`} ref={cartRef}>
+                    <button
+                      className="sd-nav-icon"
+                      title="Carrito"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const opening = !cartOpen;
+                        closeAllDropdowns();
+                        setCartOpen(opening);
+                        if (opening) fetchCartItems();
+                      }}
+                    >
+                      <i className="fas fa-shopping-cart"></i>
+                    </button>
+                    <div className="sd-nav-notif-dd" style={{width:380}}>
+                      <div className="sd-notif-header">
+                        <span className="sd-notif-h">Carrito</span>
+                        <Link href="/cart" className="sd-notif-link" onClick={() => setCartOpen(false)}>Ver carrito</Link>
+                      </div>
+                      <div className="sd-notif-list">
+                        {cartItems.length === 0 ? (
+                          <div className="sd-notif-empty">
+                            <i className="fas fa-shopping-cart" style={{fontSize:24,marginBottom:6,display:"block",color:"#E5E7EB"}}></i>
+                            <p>Tu carrito esta vacio</p>
+                          </div>
+                        ) : (
+                          cartItems.map(c => (
+                            <Link key={c.id} href={`/product/${c.slug}`} className="sd-search-item" onClick={() => setCartOpen(false)}>
+                              {c.image ? (
+                                <img className="sd-sugg-img" src={c.image} alt="" loading="lazy" />
+                              ) : (
+                                <div className="sd-sugg-img-ph"><i className="fas fa-box"></i></div>
+                              )}
+                              <div className="sd-sugg-body">
+                                <div className="sd-sugg-name">{c.title}</div>
+                                <div style={{fontSize:13,fontWeight:700,color:"#4A7CF7"}}>${Number(c.price).toFixed(2)} x{c.quantity}</div>
+                              </div>
+                            </Link>
+                          ))
+                        )}
+                      </div>
+                      {cartItems.length > 0 && (
+                        <div style={{padding:"12px 16px",borderTop:"1px solid #F5F5F6",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                          <span style={{fontSize:14,fontWeight:700,color:"#0A0A0B"}}>Total: ${cartTotal.toFixed(2)}</span>
+                          <Link href="/checkout" onClick={() => setCartOpen(false)} style={{fontSize:13,color:"#fff",background:"#4A7CF7",padding:"8px 16px",borderRadius:8,fontWeight:700,textDecoration:"none"}}>
+                            Comprar
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
                   {/* User */}
                   <div className={`sd-nav-user${userMenuOpen ? " open" : ""}`} ref={userRef}>
@@ -488,9 +672,9 @@ export default function Navbar() {
                       className="sd-nav-user-btn"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setUserMenuOpen(!userMenuOpen);
-                        setNotifOpen(false);
-                        setSettingsOpen(false);
+                        const opening = !userMenuOpen;
+                        closeAllDropdowns();
+                        setUserMenuOpen(opening);
                       }}
                     >
                       <div className="sd-nav-avatar">
@@ -542,9 +726,9 @@ export default function Navbar() {
                 </>
               ) : !loading ? (
                 <>
-                  <Link href="/cart" className="sd-nav-icon">
+                  <button className="sd-nav-icon" onClick={() => { setAuthPopupOpen(true); setAuthPanel("login"); setAuthError(""); }} title="Carrito">
                     <i className="fas fa-shopping-cart"></i>
-                  </Link>
+                  </button>
                   <div className="sd-nav-auth-wrap">
                     <button
                       className="sd-nav-auth-btn"
