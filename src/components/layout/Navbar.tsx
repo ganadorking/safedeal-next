@@ -484,21 +484,48 @@ export default function Navbar() {
                   <div className="sd-set-header">
                     <h3><i className="fas fa-sliders-h"></i> Configuracion</h3>
                   </div>
-                  <Link href="/settings" className="sd-set-item" onClick={() => setSettingsOpen(false)}>
+                  <div className="sd-set-item">
                     <i className="fas fa-language"></i>
                     <span>Idioma</span>
-                    <span className="sd-set-val">Espanol</span>
-                  </Link>
-                  <Link href="/settings" className="sd-set-item" onClick={() => setSettingsOpen(false)}>
+                    <select
+                      style={{marginLeft:"auto",background:"#F5F5F6",border:"1px solid #E5E7EB",borderRadius:6,padding:"4px 8px",fontSize:12,fontWeight:600,color:"#374151",fontFamily:"inherit",cursor:"pointer"}}
+                      defaultValue="es"
+                    >
+                      <option value="es">Espanol</option>
+                      <option value="en">English</option>
+                      <option value="pt">Portugues</option>
+                    </select>
+                  </div>
+                  <div className="sd-set-item">
                     <i className="fas fa-coins"></i>
                     <span>Divisa</span>
-                    <span className="sd-set-val">USD $</span>
-                  </Link>
-                  <Link href="/settings" className="sd-set-item" onClick={() => setSettingsOpen(false)}>
+                    <select
+                      style={{marginLeft:"auto",background:"#F5F5F6",border:"1px solid #E5E7EB",borderRadius:6,padding:"4px 8px",fontSize:12,fontWeight:600,color:"#374151",fontFamily:"inherit",cursor:"pointer"}}
+                      defaultValue="USD"
+                    >
+                      <option value="USD">USD $</option>
+                      <option value="EUR">EUR €</option>
+                      <option value="MXN">MXN $</option>
+                      <option value="COP">COP $</option>
+                      <option value="ARS">ARS $</option>
+                      <option value="BRL">BRL R$</option>
+                      <option value="CLP">CLP $</option>
+                      <option value="PEN">PEN S/</option>
+                    </select>
+                  </div>
+                  <div className="sd-set-item">
                     <i className="fas fa-map-marker-alt"></i>
                     <span>Region</span>
-                    <span className="sd-set-val">America Latina</span>
-                  </Link>
+                    <select
+                      style={{marginLeft:"auto",background:"#F5F5F6",border:"1px solid #E5E7EB",borderRadius:6,padding:"4px 8px",fontSize:12,fontWeight:600,color:"#374151",fontFamily:"inherit",cursor:"pointer"}}
+                      defaultValue="latam"
+                    >
+                      <option value="latam">America Latina</option>
+                      <option value="us">Estados Unidos</option>
+                      <option value="eu">Europa</option>
+                      <option value="global">Global</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -860,6 +887,28 @@ export default function Navbar() {
         </div>
       </nav>
 
+
+      {/* ===== CATEGORIES BAR (Desktop) ===== */}
+      <div className="sd-cat-bar">
+        <div className="sd-cat-bar-inner">
+          {CAT_BAR_ITEMS.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/category/${item.slug}`}
+              className="sd-cat-bar-link"
+            >
+              <i className={`fas ${item.icon}`}></i>
+              {item.label}
+            </Link>
+          ))}
+          {user && profile ? (
+            <Link href="/sell" className="sd-cat-bar-link sell">
+              <i className="fas fa-plus-circle"></i>
+              Vender
+            </Link>
+          ) : null}
+        </div>
+      </div>
 
       {/* ===== CATEGORY SIDEBAR OVERLAY ===== */}
       <div

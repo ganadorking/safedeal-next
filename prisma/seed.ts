@@ -7,15 +7,37 @@ async function main() {
 
   // Categories
   const categories = [
+    // Gaming
     { name: "Videojuegos", slug: "videojuegos", icon: "fas fa-gamepad", description: "Juegos, DLCs, monedas y claves para todas las plataformas.", sortOrder: 1 },
-    { name: "Gift Cards", slug: "gift-cards", icon: "fas fa-gift", description: "Tarjetas de regalo para gaming, streaming, compras.", sortOrder: 2 },
-    { name: "Software", slug: "software", icon: "fas fa-laptop-code", description: "Licencias de software, sistemas operativos, seguridad.", sortOrder: 3 },
-    { name: "Suscripciones", slug: "streaming", icon: "fas fa-play-circle", description: "Servicios de streaming, m\u00fasica y entretenimiento.", sortOrder: 4 },
-    { name: "Cuentas", slug: "cuentas", icon: "fas fa-user-circle", description: "Cuentas premium de streaming, dise\u00f1o, software.", sortOrder: 5 },
-    { name: "Servicios", slug: "servicios", icon: "fas fa-concierge-bell", description: "Dise\u00f1o gr\u00e1fico, desarrollo web, edici\u00f3n de video.", sortOrder: 6 },
-    { name: "Desarrollo Web", slug: "desarrollo-web", icon: "fas fa-code", description: "Plantillas, plugins, temas y componentes.", sortOrder: 7 },
-    { name: "Criptomonedas", slug: "criptomonedas", icon: "fas fa-coins", description: "Trading tools, se\u00f1ales y herramientas cripto.", sortOrder: 8 },
-    { name: "Educaci\u00f3n", slug: "educacion", icon: "fas fa-graduation-cap", description: "Cursos, ebooks y recursos de aprendizaje.", sortOrder: 9 },
+    { name: "Skins & Items", slug: "skins-items", icon: "fas fa-shield-alt", description: "Skins, items y cosméticos para tus juegos favoritos.", sortOrder: 2 },
+    { name: "Monedas & Recursos", slug: "monedas-recursos", icon: "fas fa-coins", description: "Monedas in-game, recursos y créditos virtuales.", sortOrder: 3 },
+    { name: "Cuentas Gaming", slug: "cuentas-gaming", icon: "fas fa-user-shield", description: "Cuentas de gaming con niveles, logros y contenido.", sortOrder: 4 },
+    { name: "Trading Cards", slug: "trading-cards", icon: "fas fa-layer-group", description: "Cartas coleccionables digitales y TCG.", sortOrder: 5 },
+    // Entretenimiento
+    { name: "Streaming Video", slug: "streaming-video", icon: "fas fa-tv", description: "Suscripciones de video: Netflix, Disney+, HBO y más.", sortOrder: 6 },
+    { name: "Streaming Música", slug: "streaming-musica", icon: "fas fa-music", description: "Spotify, Apple Music, Deezer y más.", sortOrder: 7 },
+    { name: "Streaming en Vivo", slug: "streaming-live", icon: "fas fa-broadcast-tower", description: "Twitch, YouTube Premium y plataformas en vivo.", sortOrder: 8 },
+    // Productos Digitales
+    { name: "Gift Cards", slug: "gift-cards", icon: "fas fa-gift", description: "Tarjetas de regalo para gaming, streaming, compras.", sortOrder: 9 },
+    { name: "Suscripciones", slug: "suscripciones", icon: "fas fa-sync-alt", description: "Servicios de suscripción premium variados.", sortOrder: 10 },
+    { name: "Software", slug: "software", icon: "fas fa-laptop-code", description: "Licencias de software, sistemas operativos, seguridad.", sortOrder: 11 },
+    { name: "Cuentas Digitales", slug: "cuentas", icon: "fas fa-user-circle", description: "Cuentas premium de streaming, diseño, software.", sortOrder: 12 },
+    // Tecnología & IA
+    { name: "Inteligencia Artificial", slug: "inteligencia-artificial", icon: "fas fa-robot", description: "ChatGPT, Midjourney, Claude y herramientas de IA.", sortOrder: 13 },
+    { name: "Automatización & Bots", slug: "automatizacion-bots", icon: "fas fa-cogs", description: "Bots, scripts y herramientas de automatización.", sortOrder: 14 },
+    { name: "Desarrollo Web", slug: "desarrollo-web", icon: "fas fa-code", description: "Plantillas, plugins, temas y componentes.", sortOrder: 15 },
+    { name: "Cloud Computing", slug: "cloud-computing", icon: "fas fa-cloud", description: "Servicios cloud, hosting y almacenamiento.", sortOrder: 16 },
+    // Business & Finanzas
+    { name: "Criptomonedas", slug: "criptomonedas", icon: "fab fa-bitcoin", description: "Trading tools, señales y herramientas cripto.", sortOrder: 17 },
+    { name: "Herramientas Trading", slug: "herramientas-trading", icon: "fas fa-chart-bar", description: "Indicadores, señales y plataformas de trading.", sortOrder: 18 },
+    { name: "Marketing Digital", slug: "marketing-digital", icon: "fas fa-bullhorn", description: "SEO, SEM, email marketing y herramientas.", sortOrder: 19 },
+    { name: "Redes Sociales", slug: "redes-sociales", icon: "fas fa-share-alt", description: "Seguidores, gestión y herramientas de redes sociales.", sortOrder: 20 },
+    { name: "Web3 & Metaverso", slug: "web3-metaverso", icon: "fas fa-globe", description: "NFTs, DeFi, metaverso y Web3.", sortOrder: 21 },
+    // Servicios & Educación
+    { name: "Servicios", slug: "servicios", icon: "fas fa-concierge-bell", description: "Diseño gráfico, desarrollo web, edición de video.", sortOrder: 22 },
+    { name: "Educación", slug: "educacion", icon: "fas fa-graduation-cap", description: "Cursos, ebooks y recursos de aprendizaje.", sortOrder: 23 },
+    { name: "Diseño & Creatividad", slug: "diseno-creativo", icon: "fas fa-palette", description: "Plantillas, recursos gráficos y herramientas de diseño.", sortOrder: 24 },
+    { name: "Otros Digitales", slug: "otros", icon: "fas fa-th-large", description: "Otros productos y servicios digitales.", sortOrder: 25 },
   ];
 
   for (const cat of categories) {

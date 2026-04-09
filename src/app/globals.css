@@ -1139,7 +1139,7 @@ html { scrollbar-width: thin; scrollbar-color: #CBD5E1 #F8FAFC; }
 .sd-cat-bar-link.sell{color:#4A7CF7;margin-left:auto;font-weight:600}
 .sd-cat-bar-link.sell:hover{color:#ff1a93}
 
-.main-content{padding-top:60px}
+.main-content{padding-top:100px}
 
 /* Navbar desktop */
 @media(min-width:769px){
